@@ -12,6 +12,7 @@
         [x-cloak] { display: none; }
     </style>
     <link href="style.css" rel="stylesheet" type="text/css"/>
+    <script src="https://kit.fontawesome.com/131fcc52b8.js" crossorigin="anonymous"></script>
     <script>
         window.addEventListener("load", function() {
           const form = document.getElementById('badanie');
@@ -60,12 +61,13 @@
             <div id="header">
                 <a href="index.html" style="color: #222;"><h1>Daniel Leszczak</h1></a>
 
-                <div id="contact">
-                    skontaktuj się ze mną:<br>
-                    <a href="mailto:daniel.leszczak@student.uni.opole.pl" class="underDotHover" alt="email">daniel@leszczak.pl</a>
+                <div id="findMe">
+                    <a href="https://linkedin.com/in/leszczak" alt="linkedin"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:daniel.leszczak@student.uni.opole.pl" alt="email"><i class="fa-solid fa-square-envelope"></i></a>
                 </div>
 
-                <p id="meHead">Instytut Psychologii, Uniwersytet Opolski<br>
+                <p id="meHead">
+                    <i class="fa-solid fa-graduation-cap" style="margin-right: 2px;"></i> <a href="http://psychologia.uni.opole.pl" alt="Instytur Psychologiczny Uniwersytetu Opolskiego">Instytut Psychologii</a>, <a href="https://uni.opole.pl" alt="Uniwersytet Opolski">Uniwersytet Opolski</a><br>
                     student 5. roku studiów magisterskich
                 </p>
 
@@ -75,7 +77,7 @@
             </div>
             <div id="intro" x-show="!openResearch" x-transition><span id="forNow">tu znajdzie się filmik wyjaśniający co tu się dzieje</span></div>
             <przyciski-back>
-            <div class="butField" x-show="!openResearch">
+            <div class="butField butback" x-show="!openResearch">
                 <button x-on:click="openResearch = !openResearch">Przejdź do badania</button>
             </div>
             <div class="butField bot8" x-show="openResearch & !openPil" x-cloak>
@@ -1716,7 +1718,6 @@
                                 <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
                             </div>
                         </div>
-<!-- tutaj będzie kontynuacja-->
                     </fieldset>
                     <div class="butField" x-show="openDids & !openSummary" x-cloak>
                         <button id="submit" type="submit" form="badanie" value="submit" x-on:click="openSummary = !openSummary" x-cloak>Wyślij</button>
