@@ -134,11 +134,12 @@ hr {
 
 .bot8 {
     position: relative;
-    bottom: 8px;
+    bottom: 7px;
 }
 
 button, input[type=button] {
     width: 150px;
+    height: 100%;
     padding: 12px;
     color: #fff;
     background-color: #2d90be;
