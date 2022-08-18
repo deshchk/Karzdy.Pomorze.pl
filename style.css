@@ -1,7 +1,6 @@
 @media only screen and (min-width: 768px) {
-    #flexContainer {
-        display: flex;
-        justify-content: center;
+    #container {
+        margin: auto;
     }
 }
 
@@ -13,17 +12,19 @@ body {
 }
 
 #flexContainer {
+    display: flex;
+    justify-content: center;
     height: 100%;
 }
 
 #container {
     max-width: 680px;
     min-width: 400px;
-    margin: auto;
+    margin-bottom: auto;
 }
 
 #header {
-    padding: 18px 18px 0 18px;
+    padding: 20px 18px 0 18px;
 }
 
 #header h1 { margin: 0; }
@@ -44,7 +45,7 @@ body {
     text-align: right;
     position: relative;
     right: 8px;
-    bottom: 5px;
+    top: 9px;
 }
 
 #findMe a:nth-child(2) {
@@ -185,7 +186,7 @@ input[type=text]:focus {
     outline: none;
 }
 
-label {
+#uInfo label {
     position: relative;
     bottom: 1px;
     padding-right: 16px;
@@ -235,14 +236,11 @@ label {
     margin: 0 auto;
 }
 
-datalist {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-#sbs datalist, #dids datalist {
-    padding-top: 8px;
+.datalist {
+    position: relative;
+    left: 6px;
+    padding: 8px 0 0 0;
+    width: calc(100% - 12px);
 }
 
 .formCount {
