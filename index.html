@@ -9,11 +9,12 @@
     <meta href="...ico" type="image/x-icon" rel="shortcut icon"/>
     <!-- other metas like social media ones for example -->
     <style>
-        [x-cloak] { display: none; }
+        [x-cloak] { display: none !important; }
     </style>
+    <script defer src="form.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css"/>
     <script src="https://kit.fontawesome.com/131fcc52b8.js" crossorigin="anonymous"></script>
-    <script defer src="form.js"></script>
+    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://unpkg.com/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -24,10 +25,10 @@
     p: $persist(''), w: $persist(''), c: $persist(''), staZwY: $persist(''), staZwM: $persist(''), staZwT: $persist(''), staZwD: $persist(''), zaw: $persist(''), 
     staZaY: $persist(''), staZaM: $persist(''), staZaT: $persist(''), staZaD: $persist(''), sp: $persist(''), ss: $persist(''), sn: $persist(''), wyk: $persist(''),
 
-    pil1: $persist(4), pil2: $persist(4), pil3: $persist(4), pil4: $persist(4), pil5: $persist(4),
-    pil6: $persist(4), pil7: $persist(4), pil8: $persist(4), pil9: $persist(4), pil10: $persist(4), 
-    pil11: $persist(4), pil12: $persist(4), pil13: $persist(4), pil14: $persist(4), pil15: $persist(4),
-    pil16: $persist(4), pil17: $persist(4), pil18: $persist(4), pil19: $persist(4), pil20: $persist(4), 
+    pil1: $persist(''), pil2: $persist(''), pil3: $persist(''), pil4: $persist(''), pil5: $persist(''),
+    pil6: $persist(''), pil7: $persist(''), pil8: $persist(''), pil9: $persist(''), pil10: $persist(''), 
+    pil11: $persist(''), pil12: $persist(''), pil13: $persist(''), pil14: $persist(''), pil15: $persist(''),
+    pil16: $persist(''), pil17: $persist(''), pil18: $persist(''), pil19: $persist(''), pil20: $persist(''), 
 
     sbs1: $persist(''), sbs2: $persist(''), sbs3: $persist(''), sbs4: $persist(''), sbs5: $persist(''),
     sbs6: $persist(''), sbs7: $persist(''), sbs8: $persist(''), sbs9: $persist(''), sbs10: $persist(''),
@@ -37,13 +38,14 @@
     sbs26: $persist(''), sbs27: $persist(''), sbs28: $persist(''), sbs29: $persist(''), sbs30: $persist(''),
     sbs31: $persist(''), 
 
-    dids1: $persist(3), dids2: $persist(3), dids3: $persist(3), dids4: $persist(3), dids5: $persist(3),
-    dids6: $persist(3), dids7: $persist(3), dids8: $persist(3), dids9: $persist(3), dids10: $persist(3),
-    dids11: $persist(3), dids12: $persist(3), dids13: $persist(3), dids14: $persist(3), dids15: $persist(3),
-    dids16: $persist(3), dids17: $persist(3), dids18: $persist(3), dids19: $persist(3), dids20: $persist(3),
-    dids21: $persist(3), dids22: $persist(3), dids23: $persist(3), dids24: $persist(3), dids25: $persist(3),
+    dids1: $persist(''), dids2: $persist(''), dids3: $persist(''), dids4: $persist(''), dids5: $persist(''),
+    dids6: $persist(''), dids7: $persist(''), dids8: $persist(''), dids9: $persist(''), dids10: $persist(''),
+    dids11: $persist(''), dids12: $persist(''), dids13: $persist(''), dids14: $persist(''), dids15: $persist(''),
+    dids16: $persist(''), dids17: $persist(''), dids18: $persist(''), dids19: $persist(''), dids20: $persist(''),
+    dids21: $persist(''), dids22: $persist(''), dids23: $persist(''), dids24: $persist(''), dids25: $persist(''),
 
-        get wIsBad() { if (this.w > 30 || this.w < 18 & this.w != '' || this.w.startsWith(0)) {return true} else {return false} },
+    get startNew() { if (this.p != '') {this.p = ''; this.w = ''; this.c = ''; this.staZwY = ''; this.staZwM = ''; this. staZwT = ''; this.staZwD = ''; this.zaw = ''; this.staZaY = ''; this.staZaM = ''; this.staZaT = ''; this.staZaD = ''; this.sp = ''; this.ss = ''; this.sn = ''; this.wyk = ''; return true} else {return false} },
+        get wIsBad() { if (this.w > 30 || this.w < 18 & this.w != '' || this.w.startsWith(0)) {return true} else {return false} },   
     get aW() { if (!this.wIsBad & this.w != '') {return true} else {return false} },
     get aC() { if (this.aW & this.c != '') {return true} else {return false} },
         get szwdIsBad() { if (this.staZwD > 6 || this.staZwD < 1 & this.staZwD != '') {return true} else {return false} },
@@ -71,6 +73,7 @@
 }">
     <div id="flexContainer">
         <div id="container">
+    <!-- header -->            
             <div id="header">
                 <a href="index.html" style="color: #222;"><h1>Daniel Leszczak</h1></a>
 
@@ -88,13 +91,16 @@
                     <span style="color: #999;">&#8212;&nbsp;badanie do pracy magisterskiej</span>
                 </h3>
             </div>
-            <div id="intro" x-show="!openResearch" x-transition><span id="forNow">tu znajdzie się filmik wyjaśniający co tu się dzieje</span></div>
+    <!-- video -->        
+            <div id="intro" x-show="!openResearch" x-transition:enter.opacity.scale.10.duration.300ms x-transition:leave.duration.150ms><span id="forNow">tu znajdzie się filmik wyjaśniający co tu się dzieje</span></div>
+    <!-- buttons back -->           
             <przyciski-back>
-            <div class="butField butback" x-show="!openResearch">
+            <div class="butField butback" x-show="!openResearch" >
                 <button x-on:click="openResearch = !openResearch">Przejdź do badania</button>
             </div>
             <div class="butField bot8" x-show="openResearch & !openPil" x-cloak>
                 <button x-on:click="openResearch = !openResearch" x-cloak>Wróć</button>
+                <button class="reset" @click="document.getElementById('badanie').reset() & localStorage.clear() & startNew" x-cloak>Zacznij od nowa</button>
             </div>
             <div class="butField bot8" x-show="openPil & !openSbs" x-cloak>    
                 <button x-on:click="openPil = !openPil" x-cloak>Wróć</button>
@@ -106,10 +112,11 @@
                 <button x-on:click="openDids = !openDids" x-cloak>Wróć</button>
             </div>
             </przyciski-back>
-            <div id="mainForm" x-show="openResearch" x-transition>
-                <form id="badanie" x-show="!openSummary" method="POST" @submit.prevent>
-                    <fieldset id="uInfo" x-show="!openPil" x-transition x-cloak>
-                        <fieldset class="fieldIn reqField" x-transition x-cloak>
+            <div id="mainForm" x-show="openResearch" x-transition:enter.scale.10>
+                <form id="badanie" x-show="!openSummary" @submit.prevent>
+<!-- METRYCZKA -->                    
+                    <fieldset id="uInfo" x-show="!openPil" x-cloak>
+                        <fieldset class="fieldIn reqField" x-cloak>
                             <legend>Płeć</legend>
                             <div class="formBlock">
                                 <input type="radio" name="płeć" value="1" id="k" x-model="p">
@@ -168,7 +175,7 @@
                         </fieldset>
 
 
-                        <fieldset class="fieldIn optField" x-show="aC" x-transition x-cloak>
+                        <fieldset class="fieldIn optField" x-show="aC" x-collapse x-cloak>
                             <legend style="color: #2c7cad; padding-right: 5px;">⇡</legend>
                             <p class="fielDesc">W poniższe pola wpisz jak długo <span class="underDot">w przybliżeniu</span> jesteś w związku lub <span x-text="p == 1 ? 'sama' : p == 2 ? 'sam' : 'sam/a'">sam/a</span>.</p>
                             <div class="formBlock">
@@ -207,7 +214,7 @@
                         </fieldset>
 
 
-                        <fieldset class="fieldIn optField" x-show="aZaw" x-transition x-cloak>
+                        <fieldset class="fieldIn optField" x-show="aZaw" x-collapse x-cloak>
                             <legend style="color: #2c7cad; padding-right: 5px;">⇡</legend>
                             <p class="fielDesc"><span class="underDot">W przybliżeniu</span> ile czasu już <strong>minęło</strong> odkąd uczysz się lub pracujesz <span class="underDot">w tym samym miejscu</span> bądź też jesteś bez pracy.</p>
                             <div class="formBlock">
@@ -318,350 +325,514 @@
                             </div>
                         </fieldset>
                     </fieldset>
-                    <div class="butField" x-show="!openPil & aWyk" x-transision x-cloak>
-                        <button id="next-pil" x-on:click="openPil = !openPil, window.scrollTo(0, 0)" x-cloak>Dalej</button>
+    <!-- go next -->
+                    <div class="butField" x-show="!openPil & aWyk" x-transition x-cloak>
+                        <button id="next-pil" x-on:click="openPil = !openPil, window.scrollTo(0, 0)" x-cloak style="position: relative; bottom: 4px;">Dalej</button>
                     </div>
                     
-
+<!-- PIL -->
                     <fieldset id="pil" class="fieldIn fieldOut reqField" x-show="openPil & !openSbs" x-transition x-cloak>
                         <legend>Poczucie sensu życia <span class="formCount">(1/3)</span></legend>
+    <!-- pil 1 -->                          
                         <p class="question">Zazwyczaj jestem:</p>
                         <div class="answer">
-                            <input type="range" name="pil1" min="1" max="7" x-model="pil1">
-                            <div class="flexRow datalist">
-                                <label>1</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>7</label>
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil1" id="pil1-1" value="1" x-model="pil1">
+                                <input type="radio" name="pil1" id="pil1-2" value="2" x-model="pil1">
+                                <input type="radio" name="pil1" id="pil1-3" value="3" x-model="pil1">
+                                <input type="radio" name="pil1" id="pil1-4" value="4" x-model="pil1">
+                                <input type="radio" name="pil1" id="pil1-5" value="5" x-model="pil1">
+                                <input type="radio" name="pil1" id="pil1-6" value="6" x-model="pil1">
+                                <input type="radio" name="pil1" id="pil1-7" value="7" x-model="pil1">
+                            </div>
+                            <div class="flexRow datalist">    
+                                <label for="pil1-1">1</label><label for="pil1-2" style="color: #555;">&#183;</label><label for="pil1-3" style="color: #888;">&#183;</label>
+                                <label for="pil1-4" style="color: #555;">4</label>
+                                <label for="pil1-5" style="color: #888;">&#183;</label><label for="pil1-6" style="color: #555;">&#183;</label><label for="pil1-7">7</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zupełnie<br><span x-text="p == 1 ? 'rozbita' : p == 2 ? 'rozbity' : 'rozbita/y'">rozbita/y</span></p>
-                                <p class="anText align-right"><span x-text="p == 1 ? 'pełna' : p == 2 ? 'pełen' : 'pełna/pełen'">pełna/pełen</span> życia<br>i&nbsp;entuzjazmu</p>
+                                <label for="pil1-1" class="anText align-left">zupełnie<br><span x-text="p == 1 ? 'rozbita' : p == 2 ? 'rozbity' : 'rozbita/y'">rozbita/y</span></label>
+                                <label for="pil1-7" class="anText align-right"><span x-text="p == 1 ? 'pełna' : p == 2 ? 'pełen' : 'pełna/pełen'">pełna/pełen</span> życia<br>i&nbsp;entuzjazmu</label>
                             </div>
                         </div>
                         
                         <hr>
-                        
+    <!-- pil 2-r -->                          
                         <p class="question">Wydaje mi się, że życie:</p>
                         <div class="answer">
-                            <input type="range" name="pil2-r" min="1" max="7" x-model="pil2" list="pil2">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil2" id="pil2-7" value="7" x-model="pil2">
+                                <input type="radio" name="pil2" id="pil2-6" value="6" x-model="pil2">
+                                <input type="radio" name="pil2" id="pil2-5" value="5" x-model="pil2">
+                                <input type="radio" name="pil2" id="pil2-4" value="4" x-model="pil2">
+                                <input type="radio" name="pil2" id="pil2-3" value="3" x-model="pil2">
+                                <input type="radio" name="pil2" id="pil2-2" value="2" x-model="pil2">
+                                <input type="radio" name="pil2" id="pil2-1" value="1" x-model="pil2">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>7</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>1</label>
+                                <label for="pil2-7">7</label><label for="pil2-6" style="color: #555;">&#183;</label><label for="pil2-5" style="color: #888;">&#183;</label>
+                                <label for="pil2-4" style="color: #555;">4</label>
+                                <label for="pil2-3" style="color: #888;">&#183;</label><label for="pil2-2" style="color: #555;">&#183;</label><label for="pil2-1">1</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">ma zawsze coś<br>podniecającego</p>
-                                <p class="anText align-right">jest<br>zupełnie szare</p>
+                                <label for="pil2-7" class="anText align-left">ma zawsze coś<br>podniecającego</label>
+                                <label for="pil2-1" class="anText align-right">jest<br>zupełnie szare</label>
                             </div>
                         </div>
 
                         <hr>
-                        
+    <!-- pil 3 -->                          
                         <p class="question">W życiu:</p>
                         <div class="answer">
-                            <input type="range" name="pil3" min="1" max="7" x-model="pil3" list="pil1">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil3" id="pil3-1" value="1" x-model="pil3">
+                                <input type="radio" name="pil3" id="pil3-2" value="2" x-model="pil3">
+                                <input type="radio" name="pil3" id="pil3-3" value="3" x-model="pil3">
+                                <input type="radio" name="pil3" id="pil3-4" value="4" x-model="pil3">
+                                <input type="radio" name="pil3" id="pil3-5" value="5" x-model="pil3">
+                                <input type="radio" name="pil3" id="pil3-6" value="6" x-model="pil3">
+                                <input type="radio" name="pil3" id="pil3-7" value="7" x-model="pil3">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>7</label>
+                                <label for="pil3-1">1</label><label for="pil3-2" style="color: #555;">&#183;</label><label for="pil3-3" style="color: #888;">&#183;</label>
+                                <label for="pil3-4" style="color: #555;">4</label>
+                                <label for="pil3-5" style="color: #888;">&#183;</label><label for="pil3-6" style="color: #555;">&#183;</label><label for="pil3-7">7</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">nie mam żadnych<br>celów ani do<br>niczego nie dążę</p>
-                                <p class="anText align-right">mam bardzo<br>wyraźne cele<br>i dążenia</p>
+                                <label for="pil3-1" class="anText align-left">nie mam żadnych<br>celów ani do<br>niczego nie dążę</label>
+                                <label for="pil3-7" class="anText align-right">mam bardzo<br>wyraźne cele<br>i dążenia</label>
                             </div>
                         </div>
 
                         <hr>
-                        
+    <!-- pil 4 -->                          
                         <p class="question">Moje istnienie jest:</p>
                         <div class="answer">
-                            <input type="range" name="pil4" min="1" max="7" x-model="pil4" list="pil1">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil4" id="pil4-1" value="1" x-model="pil4">
+                                <input type="radio" name="pil4" id="pil4-2" value="2" x-model="pil4">
+                                <input type="radio" name="pil4" id="pil4-3" value="3" x-model="pil4">
+                                <input type="radio" name="pil4" id="pil4-4" value="4" x-model="pil4">
+                                <input type="radio" name="pil4" id="pil4-5" value="5" x-model="pil4">
+                                <input type="radio" name="pil4" id="pil4-6" value="6" x-model="pil4">
+                                <input type="radio" name="pil4" id="pil4-7" value="7" x-model="pil4">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>7</label>
+                                <label for="pil4-1">1</label><label for="pil4-2" style="color: #555;">&#183;</label><label for="pil4-3" style="color: #888;">&#183;</label>
+                                <label for="pil4-4" style="color: #555;">4</label>
+                                <label for="pil4-5" style="color: #888;">&#183;</label><label for="pil4-6" style="color: #555;">&#183;</label><label for="pil4-7">7</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zupełnie<br>bezcelowe</p>
-                                <p class="anText align-right">celowe<br>i sensowne</p>
+                                <label for="pil4-1" class="anText align-left">zupełnie<br>bezcelowe</label>
+                                <label for="pil4-7" class="anText align-right">celowe<br>i sensowne</label>
                             </div>
                         </div>
 
                         <hr>
-                        
+    <!-- pil 5-r -->                          
                         <p class="question">Każdy dzień:</p>
                         <div class="answer">
-                            <input type="range" name="pil5-r" min="1" max="7" x-model="pil5" list="pil2">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil5" id="pil5-7" value="7" x-model="pil5">
+                                <input type="radio" name="pil5" id="pil5-6" value="6" x-model="pil5">
+                                <input type="radio" name="pil5" id="pil5-5" value="5" x-model="pil5">
+                                <input type="radio" name="pil5" id="pil5-4" value="4" x-model="pil5">
+                                <input type="radio" name="pil5" id="pil5-3" value="3" x-model="pil5">
+                                <input type="radio" name="pil5" id="pil5-2" value="2" x-model="pil5">
+                                <input type="radio" name="pil5" id="pil5-1" value="1" x-model="pil5">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>7</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>1</label>
+                                <label for="pil5-7">7</label><label for="pil5-6" style="color: #555;">&#183;</label><label for="pil5-5" style="color: #888;">&#183;</label>
+                                <label for="pil5-4" style="color: #555;">4</label>
+                                <label for="pil5-3" style="color: #888;">&#183;</label><label for="pil5-2" style="color: #555;">&#183;</label><label for="pil5-1">1</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">niesie ze sobą<br>coś nowego</p>
-                                <p class="anText align-right">jest zawsze<br>taki sam</p>
+                                <label for="pil5-7" class="anText align-left">niesie ze sobą<br>coś nowego</label>
+                                <label for="pil5-1" class="anText align-right">jest zawsze<br>taki sam</label>
                             </div>
                         </div>
 
                         <hr>
-                        
+    <!-- pil 6 -->                          
                         <p class="question">Gdybym <span x-text="p == 1 ? 'miała' : p == 2 ? 'miał' : 'miał/a'">miał/a</span> możliwość wyboru, to:</p>
                         <div class="answer">
-                            <input type="range" name="pil6" min="1" max="7" x-model="pil6" list="pil1">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil6" id="pil6-1" value="1" x-model="pil6">
+                                <input type="radio" name="pil6" id="pil6-2" value="2" x-model="pil6">
+                                <input type="radio" name="pil6" id="pil6-3" value="3" x-model="pil6">
+                                <input type="radio" name="pil6" id="pil6-4" value="4" x-model="pil6">
+                                <input type="radio" name="pil6" id="pil6-5" value="5" x-model="pil6">
+                                <input type="radio" name="pil6" id="pil6-6" value="6" x-model="pil6">
+                                <input type="radio" name="pil6" id="pil6-7" value="7" x-model="pil6">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>7</label>
+                                <label for="pil6-1">1</label><label for="pil6-2" style="color: #555;">&#183;</label><label for="pil6-3" style="color: #888;">&#183;</label>
+                                <label for="pil6-4" style="color: #555;">4</label>
+                                <label for="pil6-5" style="color: #888;">&#183;</label><label for="pil6-6" style="color: #555;">&#183;</label><label for="pil6-7">7</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left"><span x-text="p == 1 ? 'wolałabym' : p == 2 ? 'wolałbym' : 'wolał(a)bym'">wolał(a)bym</span> się nigdy<br>nie narodzić</p>
-                                <p class="anText align-right"><span x-text="p == 1 ? 'chciałabym' : p == 2 ? 'chciałbym' : 'chciał(a)bym'">chciał(a)bym przeżyć</span><br>co najmniej dziewięć<br>takich żyć jak moje</p>
+                                <label for="pil6-1" class="anText align-left"><span x-text="p == 1 ? 'wolałabym' : p == 2 ? 'wolałbym' : 'wolał(a)bym'">wolał(a)bym</span> się nigdy<br>nie narodzić</label>
+                                <label for="pil6-7" class="anText align-right"><span x-text="p == 1 ? 'chciałabym' : p == 2 ? 'chciałbym' : 'chciał(a)bym'">chciał(a)bym przeżyć</span><br>co najmniej dziewięć<br>takich żyć jak moje</label>
                             </div>
                         </div>
 
                         <hr>
-                        
+    <!-- pil 7-r -->                        
                         <p class="question">Po przejściu na emeryturę, będę:</p>
                         <div class="answer">
-                            <input type="range" name="pil7-r" min="1" max="7" x-model="pil7" list="pil2">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil7" id="pil7-7" value="1" x-model="pil7">
+                                <input type="radio" name="pil7" id="pil7-6" value="2" x-model="pil7">
+                                <input type="radio" name="pil7" id="pil7-5" value="3" x-model="pil7">
+                                <input type="radio" name="pil7" id="pil7-4" value="4" x-model="pil7">
+                                <input type="radio" name="pil7" id="pil7-3" value="5" x-model="pil7">
+                                <input type="radio" name="pil7" id="pil7-2" value="6" x-model="pil7">
+                                <input type="radio" name="pil7" id="pil7-1" value="7" x-model="pil7">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>7</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>1</label>
+                                <label for="pil7-7">7</label><label for="pil7-6" style="color: #555;">&#183;</label><label for="pil7-5" style="color: #888;">&#183;</label>
+                                <label for="pil7-4" style="color: #555;">4</label>
+                                <label for="pil7-3" style="color: #888;">&#183;</label><label for="pil7-2" style="color: #555;">&#183;</label><label for="pil7-1">1</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left"><span x-text="p == 1 ? 'mogła' : p == 2 ? 'mógł' : 'mogła/mógł'">mogła/mógł</span> zająć się<br>czymś bardziej<br>interesującym</p>
-                                <p class="anText align-right">przebałaganię<br>zupełnie<br>resztę życia</p>
+                                <label for="pil7-7" class="anText align-left"><span x-text="p == 1 ? 'mogła' : p == 2 ? 'mógł' : 'mogła/mógł'">mogła/mógł</span> zająć się<br>czymś bardziej<br>interesującym</label>
+                                <label for="pil7-1" class="anText align-right">przebałaganię<br>zupełnie<br>resztę życia</label>
                             </div>
                         </div>
 
                         <hr>
-                        
+    <!-- pil 8 -->                          
                         <p class="question">W dążeniu do celów życiowych:</p>
                         <div class="answer">
-                            <input type="range" name="pil8" min="1" max="7" x-model="pil8" list="pil1">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil8" id="pil8-1" value="1" x-model="pil8">
+                                <input type="radio" name="pil8" id="pil8-2" value="2" x-model="pil8">
+                                <input type="radio" name="pil8" id="pil8-3" value="3" x-model="pil8">
+                                <input type="radio" name="pil8" id="pil8-4" value="4" x-model="pil8">
+                                <input type="radio" name="pil8" id="pil8-5" value="5" x-model="pil8">
+                                <input type="radio" name="pil8" id="pil8-6" value="6" x-model="pil8">
+                                <input type="radio" name="pil8" id="pil8-7" value="7" x-model="pil8">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>7</label>
+                                <label for="pil8-1">1</label><label for="pil8-2" style="color: #555;">&#183;</label><label for="pil8-3" style="color: #888;">&#183;</label>
+                                <label for="pil8-4" style="color: #555;">4</label>
+                                <label for="pil8-5" style="color: #888;">&#183;</label><label for="pil8-6" style="color: #555;">&#183;</label><label for="pil8-7">7</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">nigdy nie <span x-text="p == 1 ? 'miałam' : p == 2 ? 'miałem' : 'miałam/em'">miałam/em</span><br>powodzenia</p>
-                                <p class="anText align-right">udało mi się<br>zaspokajać moje<br>potrzeby</p>
+                                <label for="pil8-1" class="anText align-left">nigdy nie <span x-text="p == 1 ? 'miałam' : p == 2 ? 'miałem' : 'miałam/em'">miałam/em</span><br>powodzenia</label>
+                                <label for="pil8-7" class="anText align-right">udało mi się<br>zaspokajać moje<br>potrzeby</label>
                             </div>
                         </div>
 
                         <hr>
-                        
+    <!-- pil 9 -->                          
                         <p class="question">Moje życie:</p>
                         <div class="answer">
-                            <input type="range" name="pil9" min="1" max="7" x-model="pil9" list="pil1">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil9" id="pil9-1" value="1" x-model="pil9">
+                                <input type="radio" name="pil9" id="pil9-2" value="2" x-model="pil9">
+                                <input type="radio" name="pil9" id="pil9-3" value="3" x-model="pil9">
+                                <input type="radio" name="pil9" id="pil9-4" value="4" x-model="pil9">
+                                <input type="radio" name="pil9" id="pil9-5" value="5" x-model="pil9">
+                                <input type="radio" name="pil9" id="pil9-6" value="6" x-model="pil9">
+                                <input type="radio" name="pil9" id="pil9-7" value="7" x-model="pil9">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>7</label>
+                                <label for="pil9-1">1</label><label for="pil9-2" style="color: #555;">&#183;</label><label for="pil9-3" style="color: #888;">&#183;</label>
+                                <label for="pil9-4" style="color: #555;">4</label>
+                                <label for="pil9-5" style="color: #888;">&#183;</label><label for="pil9-6" style="color: #555;">&#183;</label><label for="pil9-7">7</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">jest puste<br>i pełne rozpaczy</p>
-                                <p class="anText align-right">dobrze się układa</p>
+                                <label for="pil9-1" class="anText align-left">jest puste<br>i pełne rozpaczy</label>
+                                <label for="pil9-7" class="anText align-right">dobrze się układa</label>
                             </div>
                         </div>
 
                         <hr>
-                        
+    <!-- pil 10-r -->                          
                         <p class="question">Gdybym dziś <span x-text="p == 1 ? 'miałą' : p == 2 ? 'miał' : 'miał/a'">miał/a</span> umrzeć, <span x-text="p == 1 ? 'czułabym' : p == 2 ? 'czułbym' : 'czuł(a)bym'">czuł(a)bym</span> że moje życie było:</p>
                         <div class="answer">
-                            <input type="range" name="pil10-r" min="1" max="7" x-model="pil10" list="pil2">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil10" id="pil10-7" value="1" x-model="pil10">
+                                <input type="radio" name="pil10" id="pil10-6" value="2" x-model="pil10">
+                                <input type="radio" name="pil10" id="pil10-5" value="3" x-model="pil10">
+                                <input type="radio" name="pil10" id="pil10-4" value="4" x-model="pil10">
+                                <input type="radio" name="pil10" id="pil10-3" value="5" x-model="pil10">
+                                <input type="radio" name="pil10" id="pil10-2" value="6" x-model="pil10">
+                                <input type="radio" name="pil10" id="pil10-1" value="7" x-model="pil10">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>7</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>1</label>
+                                <label for="pil10-7">7</label><label for="pil10-6" style="color: #555;">&#183;</label><label for="pil10-5" style="color: #888;">&#183;</label>
+                                <label for="pil10-4" style="color: #555;">4</label>
+                                <label for="pil10-3" style="color: #888;">&#183;</label><label for="pil10-2" style="color: #555;">&#183;</label><label for="pil10-1">1</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">wartościowe</p>
-                                <p class="anText align-right">pozbawione<br>wartości</p>
+                                <label for="pil10-7" class="anText align-left">wartościowe</label>
+                                <label for="pil10-1" class="anText align-right">pozbawione<br>wartości</label>
                             </div>
                         </div>
 
                         <hr>
                             <p class="comment inBetween">Dziękuję, że tu jesteś!</p>
                         <hr>
-
+    <!-- pil 11 -->  
                         <p class="question">Rozmyślając nad własnym życiem:</p>
                         <div class="answer">
-                            <input type="range" name="pil11" min="1" max="7" x-model="pil11" list="pil1">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil11" id="pil11-1" value="1" x-model="pil11">
+                                <input type="radio" name="pil11" id="pil11-2" value="2" x-model="pil11">
+                                <input type="radio" name="pil11" id="pil11-3" value="3" x-model="pil11">
+                                <input type="radio" name="pil11" id="pil11-4" value="4" x-model="pil11">
+                                <input type="radio" name="pil11" id="pil11-5" value="5" x-model="pil11">
+                                <input type="radio" name="pil11" id="pil11-6" value="6" x-model="pil11">
+                                <input type="radio" name="pil11" id="pil11-7" value="7" x-model="pil11">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>7</label>
+                                <label for="pil11-1">1</label><label for="pil11-2" style="color: #555;">&#183;</label><label for="pil11-3" style="color: #888;">&#183;</label>
+                                <label for="pil11-4" style="color: #555;">4</label>
+                                <label for="pil11-5" style="color: #888;">&#183;</label><label for="pil11-6" style="color: #555;">&#183;</label><label for="pil11-7">7</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">często zastanawiam się,<br>po co żyję</p>
-                                <p class="anText align-right">zawsze znajduję<br>wytłumaczenie dla<br>swojego życia</p>
+                                <label for="pil11-1" class="anText align-left">często zastanawiam się,<br>po co żyję</label>
+                                <label for="pil11-7" class="anText align-right">zawsze znajduję<br>wytłumaczenie dla<br>swojego życia</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- pil 12 -->  
                         <p class="question">Gdy myślę o swoim stosunku do otaczającego świata, to:</p>
                         <div class="answer">
-                            <input type="range" name="pil12" min="1" max="7" x-model="pil12" list="pil1">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil12" id="pil12-1" value="1" x-model="pil12">
+                                <input type="radio" name="pil12" id="pil12-2" value="2" x-model="pil12">
+                                <input type="radio" name="pil12" id="pil12-3" value="3" x-model="pil12">
+                                <input type="radio" name="pil12" id="pil12-4" value="4" x-model="pil12">
+                                <input type="radio" name="pil12" id="pil12-5" value="5" x-model="pil12">
+                                <input type="radio" name="pil12" id="pil12-6" value="6" x-model="pil12">
+                                <input type="radio" name="pil12" id="pil12-7" value="7" x-model="pil12">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>7</label>
+                                <label for="pil12-1">1</label><label for="pil12-2" style="color: #555;">&#183;</label><label for="pil12-3" style="color: #888;">&#183;</label>
+                                <label for="pil12-4" style="color: #555;">4</label>
+                                <label for="pil12-5" style="color: #888;">&#183;</label><label for="pil12-6" style="color: #555;">&#183;</label><label for="pil12-7">7</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">czuję się całkiem<br><span x-text="p == 1 ? 'zagubiona' : p == 2 ? 'zagubiony' : 'zagubiona/y'">zagubiona/y</span></p>
-                                <p class="anText align-right">znajduję swoją rolę<br>w świecie</p>
+                                <label for="pil12-1" class="anText align-left">czuję się całkiem<br><span x-text="p == 1 ? 'zagubiona' : p == 2 ? 'zagubiony' : 'zagubiona/y'">zagubiona/y</span></label>
+                                <label for="pil12-7" class="anText align-right">znajduję swoją rolę<br>w świecie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- pil 13 -->  
                         <p class="question">Jestem osobą:</p>
                         <div class="answer">
-                            <input type="range" name="pil13" min="1" max="7" x-model="pil13" list="pil1">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil13" id="pil13-1" value="1" x-model="pil13">
+                                <input type="radio" name="pil13" id="pil13-2" value="2" x-model="pil13">
+                                <input type="radio" name="pil13" id="pil13-3" value="3" x-model="pil13">
+                                <input type="radio" name="pil13" id="pil13-4" value="4" x-model="pil13">
+                                <input type="radio" name="pil13" id="pil13-5" value="5" x-model="pil13">
+                                <input type="radio" name="pil13" id="pil13-6" value="6" x-model="pil13">
+                                <input type="radio" name="pil13" id="pil13-7" value="7" x-model="pil13">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>7</label>
+                                <label for="pil13-1">1</label><label for="pil13-2" style="color: #555;">&#183;</label><label for="pil13-3" style="color: #888;">&#183;</label>
+                                <label for="pil13-4" style="color: #555;">4</label>
+                                <label for="pil13-5" style="color: #888;">&#183;</label><label for="pil13-6" style="color: #555;">&#183;</label><label for="pil13-7">7</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zupełnie<br>nieodpowiedzialną</p>
-                                <p class="anText align-right">bardzo<br>odpowiedzialną</p>
+                                <label for="pil13-1" class="anText align-left">zupełnie<br>nieodpowiedzialną</label>
+                                <label for="pil13-7" class="anText align-right">bardzo<br>odpowiedzialną</label>
                             </div>
                         </div>
 
                         <hr>
-                        
+    <!-- pil 14-r -->  
                         <p class="question">Gdy zastanawiam się nad zdolnością człowieka do wolnego wyboru, to wydaje mi się, że:</p>
                         <div class="answer">
-                            <input type="range" name="pil14-r" min="1" max="7" x-model="pil14" list="pil2">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil14" id="pil14-7" value="7" x-model="pil14">
+                                <input type="radio" name="pil14" id="pil14-6" value="6" x-model="pil14">
+                                <input type="radio" name="pil14" id="pil14-5" value="5" x-model="pil14">
+                                <input type="radio" name="pil14" id="pil14-4" value="4" x-model="pil14">
+                                <input type="radio" name="pil14" id="pil14-3" value="3" x-model="pil14">
+                                <input type="radio" name="pil14" id="pil14-2" value="2" x-model="pil14">
+                                <input type="radio" name="pil14" id="pil14-1" value="1" x-model="pil14">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>7</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>1</label>
+                                <label for="pil14-7">7</label><label for="pil14-6" style="color: #555;">&#183;</label><label for="pil14-5" style="color: #888;">&#183;</label>
+                                <label for="pil14-4" style="color: #555;">4</label>
+                                <label for="pil14-3" style="color: #888;">&#183;</label><label for="pil14-2" style="color: #555;">&#183;</label><label for="pil14-1">1</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">człowiek ma<br>absolutnie wolny<br>wybór przez całe<br>swoje życie</p>
-                                <p class="anText align-right">jest on całkowicie<br>zdeterminowany<br>dziedziczeniem<br>i środowiskiem</p>
+                                <label for="pil14-7" class="anText align-left">człowiek ma<br>absolutnie wolny<br>wybór przez całe<br>swoje życie</label>
+                                <label for="pil14-1" class="anText align-right">jest on całkowicie<br>zdeterminowany<br>dziedziczeniem<br>i środowiskiem</label>
                             </div>
                         </div>
 
                         <hr>
-                        
+    <!-- pil 15-r -->    
                         <p class="question">Mój stosunek do śmierci jest taki, że jestem:</p>
                         <div class="answer">
-                            <input type="range" name="pil15-r" min="1" max="7" x-model="pil15" list="pil2">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil15" id="pil15-7" value="7" x-model="pil15">
+                                <input type="radio" name="pil15" id="pil15-6" value="6" x-model="pil15">
+                                <input type="radio" name="pil15" id="pil15-5" value="5" x-model="pil15">
+                                <input type="radio" name="pil15" id="pil15-4" value="4" x-model="pil15">
+                                <input type="radio" name="pil15" id="pil15-3" value="3" x-model="pil15">
+                                <input type="radio" name="pil15" id="pil15-2" value="2" x-model="pil15">
+                                <input type="radio" name="pil15" id="pil15-1" value="1" x-model="pil15">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>7</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>1</label>
+                                <label for="pil15-7">7</label><label for="pil15-6" style="color: #555;">&#183;</label><label for="pil15-5" style="color: #888;">&#183;</label>
+                                <label for="pil15-4" style="color: #555;">4</label>
+                                <label for="pil15-3" style="color: #888;">&#183;</label><label for="pil15-2" style="color: #555;">&#183;</label><label for="pil15-1">1</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">na nią <span x-text="p == 1 ? 'przygotowana' : p == 2 ? 'przygotowany' : 'przygotowana/y'">przygotowana/y</span></p>
-                                <p class="anText align-right"><span x-text="p == 1 ? 'nieprzygotowana' : p == 2 ? 'nieprzygotowany' : 'nieprzygotowana/y'">nieprzygotowana/y</span> na nią<br>i bardzo się jej lękam</p>
+                                <label for="pil15-7" class="anText align-left">na nią <span x-text="p == 1 ? 'przygotowana' : p == 2 ? 'przygotowany' : 'przygotowana/y'">przygotowana/y</span></label>
+                                <label for="pil15-1" class="anText align-right"><span x-text="p == 1 ? 'nieprzygotowana' : p == 2 ? 'nieprzygotowany' : 'nieprzygotowana/y'">nieprzygotowana/y</span> na nią<br>i bardzo się jej lękam</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- pil 16 -->
                         <p class="question">O samobójstwie:</p>
                         <div class="answer">
-                            <input type="range" name="pil16" min="1" max="7" x-model="pil16" list="pil1">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil16" id="pil16-1" value="1" x-model="pil16">
+                                <input type="radio" name="pil16" id="pil16-2" value="2" x-model="pil16">
+                                <input type="radio" name="pil16" id="pil16-3" value="3" x-model="pil16">
+                                <input type="radio" name="pil16" id="pil16-4" value="4" x-model="pil16">
+                                <input type="radio" name="pil16" id="pil16-5" value="5" x-model="pil16">
+                                <input type="radio" name="pil16" id="pil16-6" value="6" x-model="pil16">
+                                <input type="radio" name="pil16" id="pil16-7" value="7" x-model="pil16">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>7</label>
+                                <label for="pil16-1">1</label><label for="pil16-2" style="color: #555;">&#183;</label><label for="pil16-3" style="color: #888;">&#183;</label>
+                                <label for="pil16-4" style="color: #555;">4</label>
+                                <label for="pil16-5" style="color: #888;">&#183;</label><label for="pil16-6" style="color: #555;">&#183;</label><label for="pil16-7">7</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left"><span x-text="p == 1 ? 'myślałam' : p == 2 ? 'myślałem' : 'myślałam/em'">myślałam/em</span> na serio<br>jako jedynej drodze<br>wyjścia z jakiejś sytuacji</p>
-                                <p class="anText align-right">nigdy ani przez chwilę<br>nie <span x-text="p == 1 ? 'pomyślałam' : p == 2 ? 'pomyślałem' : 'pomyślałam/em'">pomyślałam/em</span></p>
+                                <label for="pil16-1" class="anText align-left"><span x-text="p == 1 ? 'myślałam' : p == 2 ? 'myślałem' : 'myślałam/em'">myślałam/em</span> na serio<br>jako jedynej drodze<br>wyjścia z jakiejś sytuacji</label>
+                                <label for="pil16-7" class="anText align-right">nigdy ani przez chwilę<br>nie <span x-text="p == 1 ? 'pomyślałam' : p == 2 ? 'pomyślałem' : 'pomyślałam/em'">pomyślałam/em</span></label>
                             </div>
                         </div>
 
                         <hr>
-                        
+    <!-- pil 17-r -->  
                         <p class="question">Uważam, że moje szanse na znalezienie sensu życia, celu i&nbsp;roli w&nbsp;życiu:</p>
                         <div class="answer">
-                            <input type="range" name="pil17-r" min="1" max="7" x-model="pil17" list="pil2">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil17" id="pil17-7" value="7" x-model="pil17">
+                                <input type="radio" name="pil17" id="pil17-6" value="6" x-model="pil17">
+                                <input type="radio" name="pil17" id="pil17-5" value="5" x-model="pil17">
+                                <input type="radio" name="pil17" id="pil17-4" value="4" x-model="pil17">
+                                <input type="radio" name="pil17" id="pil17-3" value="3" x-model="pil17">
+                                <input type="radio" name="pil17" id="pil17-2" value="2" x-model="pil17">
+                                <input type="radio" name="pil17" id="pil17-1" value="1" x-model="pil17">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>7</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>1</label>
+                                <label for="pil17-7">7</label><label for="pil17-6" style="color: #555;">&#183;</label><label for="pil17-5" style="color: #888;">&#183;</label>
+                                <label for="pil17-4" style="color: #555;">4</label>
+                                <label for="pil17-3" style="color: #888;">&#183;</label><label for="pil17-2" style="color: #555;">&#183;</label><label for="pil17-1">1</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">są bardzo duże</p>
-                                <p class="anText align-right">są praktycznie żadne</p>
+                                <label for="pil17-7" class="anText align-left">są bardzo duże</label>
+                                <label for="pil17-1" class="anText align-right">są praktycznie żadne</label>
                             </div>
                         </div>
 
                         <hr>
-                        
+    <!-- pil 18-r -->  
                         <p class="question">Uważam, że:</p>
                         <div class="answer">
-                            <input type="range" name="pil18-r" min="1" max="7" x-model="pil18" list="pil2">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil18" id="pil18-7" value="7" x-model="pil18">
+                                <input type="radio" name="pil18" id="pil18-6" value="6" x-model="pil18">
+                                <input type="radio" name="pil18" id="pil18-5" value="5" x-model="pil18">
+                                <input type="radio" name="pil18" id="pil18-4" value="4" x-model="pil18">
+                                <input type="radio" name="pil18" id="pil18-3" value="3" x-model="pil18">
+                                <input type="radio" name="pil18" id="pil18-2" value="2" x-model="pil18">
+                                <input type="radio" name="pil18" id="pil18-1" value="1" x-model="pil18">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>7</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>1</label>
+                                <label for="pil18-7">7</label><label for="pil18-6" style="color: #555;">&#183;</label><label for="pil18-5" style="color: #888;">&#183;</label>
+                                <label for="pil18-4" style="color: #555;">4</label>
+                                <label for="pil18-3" style="color: #888;">&#183;</label><label for="pil18-2" style="color: #555;">&#183;</label><label for="pil18-1">1</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">kieruję i kontroluję<br>swoje życie</p>
-                                <p class="anText align-right">życie wymyka mi się<br>z rąk, jest kierowane<br>przez innych</p>
+                                <label for="pil18-7" class="anText align-left">kieruję i kontroluję<br>swoje życie</label>
+                                <label for="pil18-1" class="anText align-right">życie wymyka mi się<br>z rąk, jest kierowane<br>przez innych</label>
                             </div>
                         </div>
 
                         <hr>
-                        
+    <!-- pil 19-r -->  
                         <p class="question">Moje codzienne obowiązki są:</p>
                         <div class="answer">
-                            <input type="range" name="pil19-r" min="1" max="7" x-model="pil19" list="pil2">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil19" id="pil19-7" value="7" x-model="pil19">
+                                <input type="radio" name="pil19" id="pil19-6" value="6" x-model="pil19">
+                                <input type="radio" name="pil19" id="pil19-5" value="5" x-model="pil19">
+                                <input type="radio" name="pil19" id="pil19-4" value="4" x-model="pil19">
+                                <input type="radio" name="pil19" id="pil19-3" value="3" x-model="pil19">
+                                <input type="radio" name="pil19" id="pil19-2" value="2" x-model="pil19">
+                                <input type="radio" name="pil19" id="pil19-1" value="1" x-model="pil19">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>7</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>1</label>
+                                <label for="pil19-7">7</label><label for="pil19-6" style="color: #555;">&#183;</label><label for="pil19-5" style="color: #888;">&#183;</label>
+                                <label for="pil19-4" style="color: #555;">4</label>
+                                <label for="pil19-3" style="color: #888;">&#183;</label><label for="pil19-2" style="color: #555;">&#183;</label><label for="pil19-1">1</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">źródłem zadowolenia<br>i radości</p>
-                                <p class="anText align-right">przykre<br> i pełne udręki</p>
+                                <label for="pil19-7" class="anText align-left">źródłem zadowolenia<br>i radości</label>
+                                <label for="pil19-1" class="anText align-right">przykre<br> i pełne udręki</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- pil 20 -->  
                         <p class="question"><span x-text="p == 1 ? 'Doszłam' : p == 2 ? 'Doszedłem' : 'Doszłam/doszedłem'">Doszłam/doszedłem</span> do wniosku, że:</p>
                         <div class="answer">
-                            <input type="range" name="pil20" min="1" max="7" x-model="pil20" list="pil1">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="pil20" id="pil20-1" value="1" x-model="pil20">
+                                <input type="radio" name="pil20" id="pil20-2" value="2" x-model="pil20">
+                                <input type="radio" name="pil20" id="pil20-3" value="3" x-model="pil20">
+                                <input type="radio" name="pil20" id="pil20-4" value="4" x-model="pil20">
+                                <input type="radio" name="pil20" id="pil20-5" value="5" x-model="pil20">
+                                <input type="radio" name="pil20" id="pil20-6" value="6" x-model="pil20">
+                                <input type="radio" name="pil20" id="pil20-7" value="7" x-model="pil20">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label>&#183;</label><label>&#183;</label>
-                                <label style="color: #555;">4</label>
-                                <label>&#183;</label><label>&#183;</label><label>7</label>
+                                <label for="pil20-1">1</label><label for="pil20-2" style="color: #555;">&#183;</label><label for="pil20-3" style="color: #888;">&#183;</label>
+                                <label for="pil20-4" style="color: #555;">4</label>
+                                <label for="pil20-5" style="color: #888;">&#183;</label><label for="pil20-6" style="color: #555;">&#183;</label><label for="pil20-7">7</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">brak mi celu<br>w życiu</p>
-                                <p class="anText align-right">mam wyraźne cele<br>dające pełne zadowolenie</p>
+                                <label for="pil20-1" class="anText align-left">brak mi celu<br>w życiu</label>
+                                <label for="pil20-7" class="anText align-right">mam wyraźne cele<br>dające pełne zadowolenie</label>
                             </div>
                         </div>
 
-                        <hr>
+<!-- break -->
+                        <hr x-show="!pilEmpty" x-transition x-cloak>
                             <p class="comment forBreath" x-show="!pilEmpty" x-transition x-cloak>
                                 Na koniec badania otrzymasz wstępną interpretację swoich wyników.<br>
                                 <span style="color: #000;"><strong>1/3</strong> już za Tobą!</span><br><br>
                                 Jeśli potrzebujesz chwili przerwy, to śmiało! To jest dobry moment.
                             </p>
                     </fieldset>
+    <!-- go next -->
                     <div class="butField" x-show="openPil & !openSbs" x-cloak>
                         <p class="beforeNext" x-show="pilEmpty" x-transition x-cloak>
                             Uzupełnij <span class="underDot">wszystkie</span> pola, żeby przejść do następnej części.
                         </p>
                         <button id="next-sbs" x-on:click="openSbs = !openSbs, window.scrollTo(0, 0)" x-show="!pilEmpty" x-transition x-cloak>Dalej</button>
                     </div>
-                    
-
+<!-- SBS -->
                     <fieldset id="sbs" class="fieldIn fieldOut reqField" x-show="openSbs & !openDids" x-cloak>
                         <legend>Samotność <span class="formCount">(2/3)</span></legend>
+    <!-- sbs 1 -->
                         <p class="question">Sądzę, że mam mniej kolegów/znajomych niż inni z&nbsp;mojego otoczenia</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -670,19 +841,18 @@
                                 <input type="radio" name="sbs1" id="sbs1-3" value="3" x-model="sbs1">
                                 <input type="radio" name="sbs1" id="sbs1-4" value="4" x-model="sbs1">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">    
                                 <label for="sbs1-1">1</label><label for="sbs1-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs1-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs1-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs1-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs1-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs1-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
                         
                         <hr>
-
+    <!-- sbs 2 -->
                         <p class="question">Mam wrażenie, że teraz jestem <span x-text="p == 1 ? 'sama' : p == 2 ? 'sam' : 'sam/a'">sam/a</span></p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -691,19 +861,18 @@
                                 <input type="radio" name="sbs2" id="sbs2-3" value="3" x-model="sbs2">
                                 <input type="radio" name="sbs2" id="sbs2-4" value="4" x-model="sbs2">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs2-1">1</label><label for="sbs2-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs2-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs2-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs2-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs2-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs2-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
                         
                         <hr>
-
+    <!-- sbs 3 -->
                         <p class="question">Czasem bywam <span x-text="p == 1 ? 'izolowana' : p == 2 ? 'izolowany' : 'izolowana/y'">izolowana/y</span> przez moje otoczenie</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -712,19 +881,18 @@
                                 <input type="radio" name="sbs3" id="sbs3-3" value="3" x-model="sbs3">
                                 <input type="radio" name="sbs3" id="sbs3-4" value="4" x-model="sbs3">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs3-1">1</label><label for="sbs3-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs3-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs3-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs3-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs3-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs3-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 4 -->
                         <p class="question">Nie mam w tej chwili nikogo, kto próbowałby mnie zrozumieć</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -733,19 +901,18 @@
                                 <input type="radio" name="sbs4" id="sbs4-3" value="3" x-model="sbs4">
                                 <input type="radio" name="sbs4" id="sbs4-4" value="4" x-model="sbs4">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs4-1">1</label><label for="sbs4-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs4-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs4-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs4-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs4-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs4-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 5 -->
                         <p class="question">Mam wrażenie, że ludzie mnie lekceważą</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -754,19 +921,18 @@
                                 <input type="radio" name="sbs5" id="sbs5-3" value="3" x-model="sbs5">
                                 <input type="radio" name="sbs5" id="sbs5-4" value="4" x-model="sbs5">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs5-1">1</label><label for="sbs5-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs5-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs5-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs5-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs5-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs5-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 6 -->
                         <p class="question">Są takie chwile, w których ludzie dają mi odczuć, że ich nie obchodzę</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -775,19 +941,18 @@
                                 <input type="radio" name="sbs6" id="sbs6-3" value="3" x-model="sbs6">
                                 <input type="radio" name="sbs6" id="sbs6-4" value="4" x-model="sbs6">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs6-1">1</label><label for="sbs6-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs6-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs6-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs6-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs6-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs6-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 7 -->
                         <p class="question">Nie znam nikogo z kim <span x-text="p == 1 ? 'mogłabym' : p == 2 ? 'mógłbym' : 'mogłabym/mógłbym'">mogłabym/mógłbym</span> swobodnie porozmawiać</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -796,19 +961,18 @@
                                 <input type="radio" name="sbs7" id="sbs7-3" value="3" x-model="sbs7">
                                 <input type="radio" name="sbs7" id="sbs7-4" value="4" x-model="sbs7">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs7-1">1</label><label for="sbs7-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs7-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs7-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs7-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs7-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs7-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 8 -->
                         <p class="question">Brak w moim otoczeniu osoby, do której <span x-text="p == 1 ? 'mogłabym' : p == 2 ? 'mógłbym' : 'mogła/mógłbym'">mogła/mógłbym</span> się zwrócić w trudnej sytuacji</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -817,19 +981,18 @@
                                 <input type="radio" name="sbs8" id="sbs8-3" value="3" x-model="sbs8">
                                 <input type="radio" name="sbs8" id="sbs8-4" value="4" x-model="sbs8">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs8-1">1</label><label for="sbs8-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs8-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs8-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs8-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs8-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs8-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 9 -->
                         <p class="question">Czasami wydaje mi się, że ludzie celowo mnie nie zauważają</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -838,19 +1001,18 @@
                                 <input type="radio" name="sbs9" id="sbs9-3" value="3" x-model="sbs9">
                                 <input type="radio" name="sbs9" id="sbs9-4" value="4" x-model="sbs9">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs9-1">1</label><label for="sbs9-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs9-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs9-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs9-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs9-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs9-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 10 -->
                         <p class="question">Czasem mam wrażenie, że tak naprawdę nikt mnie dobrze mnie zna</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -859,21 +1021,20 @@
                                 <input type="radio" name="sbs10" id="sbs10-3" value="3" x-model="sbs10">
                                 <input type="radio" name="sbs10" id="sbs10-4" value="4" x-model="sbs10">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs10-1">1</label><label for="sbs10-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs10-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs10-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs10-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs10-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs10-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
-                        <hr>
-                            <p class="comment inBetween">~</p>
-                        <hr>
-
+                            <hr>
+                                <p class="comment inBetween">~</p>
+                            <hr>
+    <!-- sbs 11 -->
                         <p class="question">Często jest mi smutno</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -882,19 +1043,18 @@
                                 <input type="radio" name="sbs11" id="sbs11-3" value="3" x-model="sbs11">
                                 <input type="radio" name="sbs11" id="sbs11-4" value="4" x-model="sbs11">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs11-1">1</label><label for="sbs11-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs11-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs11-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs11-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs11-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs11-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 12 -->
                         <p class="question">Moje kontakty z ludźmi często są powierzchowne</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -903,19 +1063,18 @@
                                 <input type="radio" name="sbs12" id="sbs12-3" value="3" x-model="sbs12">
                                 <input type="radio" name="sbs12" id="sbs12-4" value="4" x-model="sbs12">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs12-1">1</label><label for="sbs12-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs12-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs12-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs12-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs12-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs12-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 13 -->
                         <p class="question">Często jestem <span x-text="p == 1 ? 'znudzona' : p == 2 ? 'znudzony' : 'znudzona/y'">znudzona/y</span></p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -924,19 +1083,18 @@
                                 <input type="radio" name="sbs13" id="sbs13-3" value="3" x-model="sbs13">
                                 <input type="radio" name="sbs13" id="sbs13-4" value="4" x-model="sbs13">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs13-1">1</label><label for="sbs13-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs13-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs13-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs13-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs13-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs13-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 14 -->
                         <p class="question">Nie mam prawdziwego przyjaciela</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -945,19 +1103,18 @@
                                 <input type="radio" name="sbs14" id="sbs14-3" value="3" x-model="sbs14">
                                 <input type="radio" name="sbs14" id="sbs14-4" value="4" x-model="sbs14">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs14-1">1</label><label for="sbs14-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs14-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs14-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs14-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs14-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs14-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 15 -->
                         <p class="question">Czuję, że ciągle jestem <span x-text="p == 1 ? 'sama' : p == 2 ? 'sam' : 'sam/a'">sam/a</span></p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -966,19 +1123,18 @@
                                 <input type="radio" name="sbs15" id="sbs15-3" value="3" x-model="sbs15">
                                 <input type="radio" name="sbs15" id="sbs15-4" value="4" x-model="sbs15">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs15-1">1</label><label for="sbs15-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs15-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs15-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs15-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs15-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs15-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 16 -->
                         <p class="question">Czuję się <span x-text="p == 1 ? 'odrzucona' : p == 2 ? 'odrzucony' : 'odrzucona/y'">odrzucona/y</span> przez otoczenie</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -987,19 +1143,18 @@
                                 <input type="radio" name="sbs16" id="sbs16-3" value="3" x-model="sbs16">
                                 <input type="radio" name="sbs16" id="sbs16-4" value="4" x-model="sbs16">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs16-1">1</label><label for="sbs16-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs16-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs16-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs16-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs16-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs16-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 17 -->
                         <p class="question">Czuję się obco wśród ludzi</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -1008,19 +1163,18 @@
                                 <input type="radio" name="sbs17" id="sbs17-3" value="3" x-model="sbs17">
                                 <input type="radio" name="sbs17" id="sbs17-4" value="4" x-model="sbs17">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs17-1">1</label><label for="sbs17-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs17-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs17-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs17-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs17-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs17-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 18 -->
                         <p class="question">Czuję niepokój w kontaktach z innymi ludźmi</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -1029,19 +1183,18 @@
                                 <input type="radio" name="sbs18" id="sbs18-3" value="3" x-model="sbs18">
                                 <input type="radio" name="sbs18" id="sbs18-4" value="4" x-model="sbs18">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs18-1">1</label><label for="sbs18-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs18-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs18-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs18-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs18-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs18-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 19 -->
                         <p class="question">Nikomu nie ufam</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -1050,19 +1203,18 @@
                                 <input type="radio" name="sbs19" id="sbs19-3" value="3" x-model="sbs19">
                                 <input type="radio" name="sbs19" id="sbs19-4" value="4" x-model="sbs19">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs19-1">1</label><label for="sbs19-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs19-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs19-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs19-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs19-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs19-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 20 -->
                         <p class="question">Bywam <span x-text="p == 1 ? 'przygnębiona' : p == 2 ? 'przygnębiony' : 'przygnębiona/y'">przygnębiona/y</span></p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -1071,19 +1223,18 @@
                                 <input type="radio" name="sbs20" id="sbs20-3" value="3" x-model="sbs20">
                                 <input type="radio" name="sbs20" id="sbs20-4" value="4" x-model="sbs20">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs20-1">1</label><label for="sbs20-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs20-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs20-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs20-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs20-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs20-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 21 -->
                         <p class="question">Właściwie to boję się być <span x-text="p == 1 ? 'otwartą' : p == 2 ? 'otwartym' : 'otwartą/ym'">otwartą/ym</span> i <span x-text="p == 1 ? 'szczerą' : p == 2 ? 'szczerym' : 'szczerą/ym'">szczerą/ym</span></p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -1092,21 +1243,20 @@
                                 <input type="radio" name="sbs21" id="sbs21-3" value="3" x-model="sbs21">
                                 <input type="radio" name="sbs21" id="sbs21-4" value="4" x-model="sbs21">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs21-1">1</label><label for="sbs21-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs21-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs21-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs21-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs21-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs21-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
-                        <hr>
-                            <p class="comment inBetween">~</p>
-                        <hr>
-
+                            <hr>
+                                <p class="comment inBetween">~</p>
+                            <hr>
+    <!-- sbs 22 -->
                         <p class="question">Czas ucieka, a my nie mamy celu w życiu</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -1115,19 +1265,18 @@
                                 <input type="radio" name="sbs22" id="sbs22-3" value="3" x-model="sbs22">
                                 <input type="radio" name="sbs22" id="sbs22-4" value="4" x-model="sbs22">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs22-1">1</label><label for="sbs22-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs22-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs22-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs22-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs22-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs22-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-                        
+    <!-- sbs 23 -->
                         <p class="question">W świecie jesteśmy tylko niewiele znaczącymi pionkami</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -1136,19 +1285,18 @@
                                 <input type="radio" name="sbs23" id="sbs23-3" value="3" x-model="sbs23">
                                 <input type="radio" name="sbs23" id="sbs23-4" value="4" x-model="sbs23">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs23-1">1</label><label for="sbs23-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs23-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs23-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs23-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs23-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs23-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 24 -->
                         <p class="question">Nie potrafimy nic zrobić, aby było lepiej</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -1157,19 +1305,18 @@
                                 <input type="radio" name="sbs24" id="sbs24-3" value="3" x-model="sbs24">
                                 <input type="radio" name="sbs24" id="sbs24-4" value="4" x-model="sbs24">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs24-1">1</label><label for="sbs24-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs24-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs24-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs24-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs24-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs24-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 25-r -->
                         <p class="question">Czuję więź z moimi rodakami</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -1178,19 +1325,18 @@
                                 <input type="radio" name="sbs25-r" id="sbs25-3" value="3" x-model="sbs25">
                                 <input type="radio" name="sbs25-r" id="sbs25-4" value="4" x-model="sbs25">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs25-1">1</label><label for="sbs25-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs25-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs25-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs25-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs25-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs25-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 26 -->
                         <p class="question">Jest po prostu nudno</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -1199,19 +1345,18 @@
                                 <input type="radio" name="sbs26" id="sbs26-3" value="3" x-model="sbs26">
                                 <input type="radio" name="sbs26" id="sbs26-4" value="4" x-model="sbs26">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs26-1">1</label><label for="sbs26-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs26-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs26-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs26-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs26-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs26-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 27 -->
                         <p class="question">Ludzie są zajęci tylko swoimi sprawami</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -1220,19 +1365,18 @@
                                 <input type="radio" name="sbs27" id="sbs27-3" value="3" x-model="sbs27">
                                 <input type="radio" name="sbs27" id="sbs27-4" value="4" x-model="sbs27">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs27-1">1</label><label for="sbs27-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs27-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs27-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs27-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs27-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs27-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 28 -->
                         <p class="question">Jest pustka wokół nas</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -1241,19 +1385,18 @@
                                 <input type="radio" name="sbs28" id="sbs28-3" value="3" x-model="sbs28">
                                 <input type="radio" name="sbs28" id="sbs28-4" value="4" x-model="sbs28">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs28-1">1</label><label for="sbs28-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs28-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs28-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs28-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs28-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs28-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 29 -->
                         <p class="question">Aby osiągnąć sukces w życiu, trzeba łamać ustalone zasady</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -1262,19 +1405,18 @@
                                 <input type="radio" name="sbs29" id="sbs29-3" value="3" x-model="sbs29">
                                 <input type="radio" name="sbs29" id="sbs29-4" value="4" x-model="sbs29">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs29-1">1</label><label for="sbs29-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs29-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs29-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs29-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs29-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs29-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 30 -->
                         <p class="question">W życiu nie warto za bardzo się starać, bo przecież tak niewiele od nas zależy</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -1283,19 +1425,18 @@
                                 <input type="radio" name="sbs30" id="sbs30-3" value="3" x-model="sbs30">
                                 <input type="radio" name="sbs30" id="sbs30-4" value="4" x-model="sbs30">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs30-1">1</label><label for="sbs30-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs30-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs30-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs30-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs30-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs30-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- sbs 31 -->
                         <p class="question">Każdy z nas jest samotną wyspą</p>
                         <div class="answer">
                             <div class="flexRow radioans">
@@ -1304,24 +1445,24 @@
                                 <input type="radio" name="sbs31" id="sbs31-3" value="3" x-model="sbs31">
                                 <input type="radio" name="sbs31" id="sbs31-4" value="4" x-model="sbs31">
                             </div>
-                            <div class="lineUnderRadios"></div>
                             <div class="flexRow datalist">
                                 <label for="sbs31-1">1</label><label for="sbs31-2" style="color: #555; padding-left: 27px;">raczej nie</label>
                                 <label for="sbs31-3" style="color: #555; padding-right: 27px;">raczej tak</label><label for="sbs31-4">4</label>
                             </div>
                             <div class="flexRow">
-                                <label for="sbs31-1" class="anText aling-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
+                                <label for="sbs31-1" class="anText align-left">całkowicie się<br><span class="underDot">nie</span> zgadzam</label>
                                 <label for="sbs31-4" class="anText align-right">zgadzam się<br>całkowicie</label>
                             </div>
                         </div>
 
-                        <hr x-show="!sbsEmpty" x-transition x-cloak>
-
+<!-- break -->
+                    <hr x-show="!sbsEmpty" x-transition x-cloak>
                         <p class="comment forBreath" x-show="!sbsEmpty" x-transition x-cloak>
                             <span style="color: #000;"><strong>2/3</strong> już za Tobą!</span><br><br>
                             Może chwila przerwy?
                         </p>
                     </fieldset>
+    <!-- go next -->
                     <div class="butField" x-show="openSbs & !openDids" x-cloak>
                         <p class="beforeNext" x-show="sbsEmpty" x-transition x-cloak>
                             Uzupełnij <span class="underDot">wszystkie</span> pola, żeby przejść do następnej części.
@@ -1329,434 +1470,586 @@
                         <button id="next-dids" x-on:click="openDids = !openDids, window.scrollTo(0, 0)" x-show="!sbsEmpty" x-transition x-cloak>Dalej</button>
                     </div>
 
-                    
+<!-- DIDS -->
                     <fieldset id="dids" class="fieldIn fieldOut reqField" x-show="openDids & !openSummary" x-transition x-cloak>
                         <legend>Rozwój tożsamości <span class="formCount">(3/3)</span></legend>
+    <!-- dids 1 -->                        
                         <p class="question"><span x-text="p == 1 ? 'Zdecydowałam' : p == 2 ? 'Zdecydowałem' : 'Zdecydowałam/em'">Zdecydowałam/em</span> już o tym, w jakim kierunku chcę podążyć w&nbsp;swoim życiu</p>
                         <div class="answer">
-                            <input type="range" name="dids1" min="1" max="5" x-model="dids1">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids1" id="dids1-1" value="1" x-model="dids1">
+                                <input type="radio" name="dids1" id="dids1-2" value="2" x-model="dids1">
+                                <input type="radio" name="dids1" id="dids1-3" value="3" x-model="dids1">
+                                <input type="radio" name="dids1" id="dids1-4" value="4" x-model="dids1">
+                                <input type="radio" name="dids1" id="dids1-5" value="5" x-model="dids1">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids1-1">1</label><label for="dids1-2" style="color: #777;">raczej nie</label>
+                                <label for="dids1-3" style="color: #555;">3</label>
+                                <label for="dids1-4" style="color: #777;">raczej tak</label><label for="dids1-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids1-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids1-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids1-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
                         
                         <hr>
-
+    <!-- dids 2 -->
                         <p class="question">Mam plany na to, co chcę zrobić w&nbsp;przyszłości</p>
                         <div class="answer">
-                            <input type="range" name="dids2" min="1" max="5" x-model="dids2">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids2" id="dids2-1" value="1" x-model="dids2">
+                                <input type="radio" name="dids2" id="dids2-2" value="2" x-model="dids2">
+                                <input type="radio" name="dids2" id="dids2-3" value="3" x-model="dids2">
+                                <input type="radio" name="dids2" id="dids2-4" value="4" x-model="dids2">
+                                <input type="radio" name="dids2" id="dids2-5" value="5" x-model="dids2">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids2-1">1</label><label for="dids2-2" style="color: #777;">raczej nie</label>
+                                <label for="dids2-3" style="color: #555;">3</label>
+                                <label for="dids2-4" style="color: #777;">raczej tak</label><label for="dids2-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids2-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids2-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids2-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
                         
                         <hr>
-
+    <!-- dids 3 -->
                         <p class="question">Wiem w jakim kierunku chcę zmierzać</p>
                         <div class="answer">
-                            <input type="range" name="dids3" min="1" max="5" x-model="dids3">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids3" id="dids3-1" value="1" x-model="dids3">
+                                <input type="radio" name="dids3" id="dids3-2" value="2" x-model="dids3">
+                                <input type="radio" name="dids3" id="dids3-3" value="3" x-model="dids3">
+                                <input type="radio" name="dids3" id="dids3-4" value="4" x-model="dids3">
+                                <input type="radio" name="dids3" id="dids3-5" value="5" x-model="dids3">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids3-1">1</label><label for="dids3-2" style="color: #777;">raczej nie</label>
+                                <label for="dids3-3" style="color: #555;">3</label>
+                                <label for="dids3-4" style="color: #777;">raczej tak</label><label for="dids3-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids3-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids3-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids3-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 4 -->
                         <p class="question">Mam jasną wizję tego, co chcę zrobić w&nbsp;przyszłości</p>
                         <div class="answer">
-                            <input type="range" name="dids4" min="1" max="5" x-model="dids4">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids4" id="dids4-1" value="1" x-model="dids4">
+                                <input type="radio" name="dids4" id="dids4-2" value="2" x-model="dids4">
+                                <input type="radio" name="dids4" id="dids4-3" value="3" x-model="dids4">
+                                <input type="radio" name="dids4" id="dids4-4" value="4" x-model="dids4">
+                                <input type="radio" name="dids4" id="dids4-5" value="5" x-model="dids4">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids4-1">1</label><label for="dids4-2" style="color: #777;">raczej nie</label>
+                                <label for="dids4-3" style="color: #555;">3</label>
+                                <label for="dids4-4" style="color: #777;">raczej tak</label><label for="dids4-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids4-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids4-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids4-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 5 -->
                         <p class="question"><span x-text="p == 1 ? 'Zdecydowałam' : p == 2 ? 'Zdecydowałem' : 'Zdecydowałam/em'">Zdecydowałam/em</span> już o tym, jak pokierować swoim życiem</p>
                         <div class="answer">
-                            <input type="range" name="dids5" min="1" max="5" x-model="dids5">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids5" id="dids5-1" value="1" x-model="dids5">
+                                <input type="radio" name="dids5" id="dids5-2" value="2" x-model="dids5">
+                                <input type="radio" name="dids5" id="dids5-3" value="3" x-model="dids5">
+                                <input type="radio" name="dids5" id="dids5-4" value="4" x-model="dids5">
+                                <input type="radio" name="dids5" id="dids5-5" value="5" x-model="dids5">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids5-1">1</label><label for="dids5-2" style="color: #777;">raczej nie</label>
+                                <label for="dids5-3" style="color: #555;">3</label>
+                                <label for="dids5-4" style="color: #777;">raczej tak</label><label for="dids5-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids5-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids5-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids5-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 6 -->
                         <p class="question">Zastanawiam się nad różnymi kierunkami, w których <span x-text="p == 1 ? 'mogłabym' : p == 2 ? 'mógłbym' : 'mogła/mógłbym'">mogła/mógłbym</span> podążać w&nbsp;życiu</p>
                         <div class="answer">
-                            <input type="range" name="dids6" min="1" max="5" x-model="dids6">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids6" id="dids6-1" value="1" x-model="dids6">
+                                <input type="radio" name="dids6" id="dids6-2" value="2" x-model="dids6">
+                                <input type="radio" name="dids6" id="dids6-3" value="3" x-model="dids6">
+                                <input type="radio" name="dids6" id="dids6-4" value="4" x-model="dids6">
+                                <input type="radio" name="dids6" id="dids6-5" value="5" x-model="dids6">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids6-1">1</label><label for="dids6-2" style="color: #777;">raczej nie</label>
+                                <label for="dids6-3" style="color: #555;">3</label>
+                                <label for="dids6-4" style="color: #777;">raczej tak</label><label for="dids6-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids6-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids6-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids6-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 7 -->
                         <p class="question">Myślę o różnych rzeczach, które <span x-text="p == 1 ? 'mogłabym' : p == 2 ? 'mógłbym' : 'mogła/mógłbym'">mogła/mógłbym</span> robić w przyszłości</p>
                         <div class="answer">
-                            <input type="range" name="dids7" min="1" max="5" x-model="dids7">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids7" id="dids7-1" value="1" x-model="dids7">
+                                <input type="radio" name="dids7" id="dids7-2" value="2" x-model="dids7">
+                                <input type="radio" name="dids7" id="dids7-3" value="3" x-model="dids7">
+                                <input type="radio" name="dids7" id="dids7-4" value="4" x-model="dids7">
+                                <input type="radio" name="dids7" id="dids7-5" value="5" x-model="dids7">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids7-1">1</label><label for="dids7-2" style="color: #777;">raczej nie</label>
+                                <label for="dids7-3" style="color: #555;">3</label>
+                                <label for="dids7-4" style="color: #777;">raczej tak</label><label for="dids7-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids7-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids7-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids7-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 8 -->
                         <p class="question">Analizuję różne style życia, które mogłyby do mnie pasować</p>
                         <div class="answer">
-                            <input type="range" name="dids8" min="1" max="5" x-model="dids8">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids8" id="dids8-1" value="1" x-model="dids8">
+                                <input type="radio" name="dids8" id="dids8-2" value="2" x-model="dids8">
+                                <input type="radio" name="dids8" id="dids8-3" value="3" x-model="dids8">
+                                <input type="radio" name="dids8" id="dids8-4" value="4" x-model="dids8">
+                                <input type="radio" name="dids8" id="dids8-5" value="5" x-model="dids8">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids8-1">1</label><label for="dids8-2" style="color: #777;">raczej nie</label>
+                                <label for="dids8-3" style="color: #555;">3</label>
+                                <label for="dids8-4" style="color: #777;">raczej tak</label><label for="dids8-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids8-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids8-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids8-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 9 -->
                         <p class="question">Analizuję różne cele, które <span x-text="p == 1 ? 'mogłabym' : p == 2 ? 'mógłbym' : 'mogła/mógłbym'">mogła/mógłbym</span> zrealizować</p>
                         <div class="answer">
-                            <input type="range" name="dids9" min="1" max="5" x-model="dids9">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids9" id="dids9-1" value="1" x-model="dids9">
+                                <input type="radio" name="dids9" id="dids9-2" value="2" x-model="dids9">
+                                <input type="radio" name="dids9" id="dids9-3" value="3" x-model="dids9">
+                                <input type="radio" name="dids9" id="dids9-4" value="4" x-model="dids9">
+                                <input type="radio" name="dids9" id="dids9-5" value="5" x-model="dids9">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids9-1">1</label><label for="dids9-2" style="color: #777;">raczej nie</label>
+                                <label for="dids9-3" style="color: #555;">3</label>
+                                <label for="dids9-4" style="color: #777;">raczej tak</label><label for="dids9-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids9-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids9-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids9-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 10 -->
                         <p class="question">Myślę o różnych stylach życia, które mogłyby być dla mnie dobre</p>
                         <div class="answer">
-                            <input type="range" name="dids10" min="1" max="5" x-model="dids10">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids10" id="dids10-1" value="1" x-model="dids10">
+                                <input type="radio" name="dids10" id="dids10-2" value="2" x-model="dids10">
+                                <input type="radio" name="dids10" id="dids10-3" value="3" x-model="dids10">
+                                <input type="radio" name="dids10" id="dids10-4" value="4" x-model="dids10">
+                                <input type="radio" name="dids10" id="dids10-5" value="5" x-model="dids10">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids10-1">1</label><label for="dids10-2" style="color: #777;">raczej nie</label>
+                                <label for="dids10-3" style="color: #555;">3</label>
+                                <label for="dids10-4" style="color: #777;">raczej tak</label><label for="dids10-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids10-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids10-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids10-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 11 -->
                         <p class="question">Nie jestem <span x-text="p == 1 ? 'pewna' : p == 2 ? 'pewny' : 'pewna/y'">pewna/y</span> co tak naprawdę chcę osiągnąć w&nbsp;życiu</p>
                         <div class="answer">
-                            <input type="range" name="dids11" min="1" max="5" x-model="dids11">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids11" id="dids11-1" value="1" x-model="dids11">
+                                <input type="radio" name="dids11" id="dids11-2" value="2" x-model="dids11">
+                                <input type="radio" name="dids11" id="dids11-3" value="3" x-model="dids11">
+                                <input type="radio" name="dids11" id="dids11-4" value="4" x-model="dids11">
+                                <input type="radio" name="dids11" id="dids11-5" value="5" x-model="dids11">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids11-1">1</label><label for="dids11-2" style="color: #777;">raczej nie</label>
+                                <label for="dids11-3" style="color: #555;">3</label>
+                                <label for="dids11-4" style="color: #777;">raczej tak</label><label for="dids11-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids11-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids11-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids11-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 12 -->
                         <p class="question">Martwię się tym, jak pokierować własną przyszłością</p>
                         <div class="answer">
-                            <input type="range" name="dids12" min="1" max="5" x-model="dids12">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids12" id="dids12-1" value="1" x-model="dids12">
+                                <input type="radio" name="dids12" id="dids12-2" value="2" x-model="dids12">
+                                <input type="radio" name="dids12" id="dids12-3" value="3" x-model="dids12">
+                                <input type="radio" name="dids12" id="dids12-4" value="4" x-model="dids12">
+                                <input type="radio" name="dids12" id="dids12-5" value="5" x-model="dids12">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids12-1">1</label><label for="dids12-2" style="color: #777;">raczej nie</label>
+                                <label for="dids12-3" style="color: #555;">3</label>
+                                <label for="dids12-4" style="color: #777;">raczej tak</label><label for="dids12-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids12-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids12-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids12-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
-                        <hr>
-                            <p class="comment inBetween">~</p>
-                        <hr>
-
+                            <hr>
+                                <p class="comment inBetween">~</p>
+                            <hr>
+    <!-- dids 13 -->
                         <p class="question">Ciągle od nowa szukam kierunku, w którym <span x-text="p == 1 ? 'chciałabym' : p == 2 ? 'chciałbym' : 'chciała/chciałbym'">chciała/chciałbym</span> podążyć w&nbsp;życiu</p>
                         <div class="answer">
-                            <input type="range" name="dids13" min="1" max="5" x-model="dids13">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids13" id="dids13-1" value="1" x-model="dids13">
+                                <input type="radio" name="dids13" id="dids13-2" value="2" x-model="dids13">
+                                <input type="radio" name="dids13" id="dids13-3" value="3" x-model="dids13">
+                                <input type="radio" name="dids13" id="dids13-4" value="4" x-model="dids13">
+                                <input type="radio" name="dids13" id="dids13-5" value="5" x-model="dids13">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids13-1">1</label><label for="dids13-2" style="color: #777;">raczej nie</label>
+                                <label for="dids13-3" style="color: #555;">3</label>
+                                <label for="dids13-4" style="color: #777;">raczej tak</label><label for="dids13-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids13-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids13-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids13-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 14 -->
                         <p class="question">Nieustannie zastanawiam się w jakim kierunku podąży moje życie</p>
                         <div class="answer">
-                            <input type="range" name="dids14" min="1" max="5" x-model="dids14">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids14" id="dids14-1" value="1" x-model="dids14">
+                                <input type="radio" name="dids14" id="dids14-2" value="2" x-model="dids14">
+                                <input type="radio" name="dids14" id="dids14-3" value="3" x-model="dids14">
+                                <input type="radio" name="dids14" id="dids14-4" value="4" x-model="dids14">
+                                <input type="radio" name="dids14" id="dids14-5" value="5" x-model="dids14">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids14-1">1</label><label for="dids14-2" style="color: #777;">raczej nie</label>
+                                <label for="dids14-3" style="color: #555;">3</label>
+                                <label for="dids14-4" style="color: #777;">raczej tak</label><label for="dids14-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids14-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids14-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids14-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 15 -->
                         <p class="question">Myślenie o kierunku, który <span x-text="p == 1 ? 'powinnam' : p == 2 ? 'powinienem' : 'powinnam/powinienem'">powinnam/powinienem</span> obrać w&nbsp;życiu czasami nie daje mi spokoju</p>
                         <div class="answer">
-                            <input type="range" name="dids15" min="1" max="5" x-model="dids15">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids15" id="dids15-1" value="1" x-model="dids15">
+                                <input type="radio" name="dids15" id="dids15-2" value="2" x-model="dids15">
+                                <input type="radio" name="dids15" id="dids15-3" value="3" x-model="dids15">
+                                <input type="radio" name="dids15" id="dids15-4" value="4" x-model="dids15">
+                                <input type="radio" name="dids15" id="dids15-5" value="5" x-model="dids15">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids15-1">1</label><label for="dids15-2" style="color: #777;">raczej nie</label>
+                                <label for="dids15-3" style="color: #555;">3</label>
+                                <label for="dids15-4" style="color: #777;">raczej tak</label><label for="dids15-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids15-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids15-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids15-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 16 -->
                         <p class="question">Moje plany na przyszłość pasują do moich prawdziwych zainteresowań i&nbsp;wartości</p>
                         <div class="answer">
-                            <input type="range" name="dids16" min="1" max="5" x-model="dids16">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids16" id="dids16-1" value="1" x-model="dids16">
+                                <input type="radio" name="dids16" id="dids16-2" value="2" x-model="dids16">
+                                <input type="radio" name="dids16" id="dids16-3" value="3" x-model="dids16">
+                                <input type="radio" name="dids16" id="dids16-4" value="4" x-model="dids16">
+                                <input type="radio" name="dids16" id="dids16-5" value="5" x-model="dids16">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids16-1">1</label><label for="dids16-2" style="color: #777;">raczej nie</label>
+                                <label for="dids16-3" style="color: #555;">3</label>
+                                <label for="dids16-4" style="color: #777;">raczej tak</label><label for="dids16-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids16-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids16-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids16-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 17 -->
                         <p class="question">Moje plany na przyszłość dodają mi wiary w&nbsp;siebie</p>
                         <div class="answer">
-                            <input type="range" name="dids17" min="1" max="5" x-model="dids17">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids17" id="dids17-1" value="1" x-model="dids17">
+                                <input type="radio" name="dids17" id="dids17-2" value="2" x-model="dids17">
+                                <input type="radio" name="dids17" id="dids17-3" value="3" x-model="dids17">
+                                <input type="radio" name="dids17" id="dids17-4" value="4" x-model="dids17">
+                                <input type="radio" name="dids17" id="dids17-5" value="5" x-model="dids17">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids17-1">1</label><label for="dids17-2" style="color: #777;">raczej nie</label>
+                                <label for="dids17-3" style="color: #555;">3</label>
+                                <label for="dids17-4" style="color: #777;">raczej tak</label><label for="dids17-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids17-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids17-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids17-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 18 -->
                         <p class="question">Dzięki moim planom na przyszłość, czuję się <span x-text="p == 1 ? 'pewna' : p == 2 ? 'pewny' : 'pewna/y'">pewna/y</span> siebie</p>
                         <div class="answer">
-                            <input type="range" name="dids18" min="1" max="5" x-model="dids18">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids18" id="dids18-1" value="1" x-model="dids18">
+                                <input type="radio" name="dids18" id="dids18-2" value="2" x-model="dids18">
+                                <input type="radio" name="dids18" id="dids18-3" value="3" x-model="dids18">
+                                <input type="radio" name="dids18" id="dids18-4" value="4" x-model="dids18">
+                                <input type="radio" name="dids18" id="dids18-5" value="5" x-model="dids18">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids18-1">1</label><label for="dids18-2" style="color: #777;">raczej nie</label>
+                                <label for="dids18-3" style="color: #555;">3</label>
+                                <label for="dids18-4" style="color: #777;">raczej tak</label><label for="dids18-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids18-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids18-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids18-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 19 -->
                         <p class="question">Czuję, że kierunek, który chcę obrać w życiu naprawdę będzie do mnie pasował</p>
                         <div class="answer">
-                            <input type="range" name="dids19" min="1" max="5" x-model="dids19">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids19" id="dids19-1" value="1" x-model="dids19">
+                                <input type="radio" name="dids19" id="dids19-2" value="2" x-model="dids19">
+                                <input type="radio" name="dids19" id="dids19-3" value="3" x-model="dids19">
+                                <input type="radio" name="dids19" id="dids19-4" value="4" x-model="dids19">
+                                <input type="radio" name="dids19" id="dids19-5" value="5" x-model="dids19">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids19-1">1</label><label for="dids19-2" style="color: #777;">raczej nie</label>
+                                <label for="dids19-3" style="color: #555;">3</label>
+                                <label for="dids19-4" style="color: #777;">raczej tak</label><label for="dids19-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids19-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids19-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids19-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 20 -->
                         <p class="question">Jestem <span x-text="p == 1 ? 'pewna' : p == 2 ? 'pewny' : 'pewna/y'">pewna/y</span> tego, że moje plany na przyszłość są dla mnie dobre</p>
                         <div class="answer">
-                            <input type="range" name="dids20" min="1" max="5" x-model="dids20">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids20" id="dids20-1" value="1" x-model="dids20">
+                                <input type="radio" name="dids20" id="dids20-2" value="2" x-model="dids20">
+                                <input type="radio" name="dids20" id="dids20-3" value="3" x-model="dids20">
+                                <input type="radio" name="dids20" id="dids20-4" value="4" x-model="dids20">
+                                <input type="radio" name="dids20" id="dids20-5" value="5" x-model="dids20">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids20-1">1</label><label for="dids20-2" style="color: #777;">raczej nie</label>
+                                <label for="dids20-3" style="color: #555;">3</label>
+                                <label for="dids20-4" style="color: #777;">raczej tak</label><label for="dids20-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids20-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids20-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids20-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 21 -->
                         <p class="question">Rozmyślam nad planami na przyszłość, które <span x-text="p == 1 ? 'stworzyłam' : p == 2 ? 'stworzyłem' : 'stworzyłam/em'">stworzyłam/em</span></p>
                         <div class="answer">
-                            <input type="range" name="dids21" min="1" max="5" x-model="dids21">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids21" id="dids21-1" value="1" x-model="dids21">
+                                <input type="radio" name="dids21" id="dids21-2" value="2" x-model="dids21">
+                                <input type="radio" name="dids21" id="dids21-3" value="3" x-model="dids21">
+                                <input type="radio" name="dids21" id="dids21-4" value="4" x-model="dids21">
+                                <input type="radio" name="dids21" id="dids21-5" value="5" x-model="dids21">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids21-1">1</label><label for="dids21-2" style="color: #777;">raczej nie</label>
+                                <label for="dids21-3" style="color: #555;">3</label>
+                                <label for="dids21-4" style="color: #777;">raczej tak</label><label for="dids21-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids21-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids21-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids21-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 22 -->
                         <p class="question">Rozmawiam z innymi ludźmi na temat moich planów na przyszłość</p>
                         <div class="answer">
-                            <input type="range" name="dids22" min="1" max="5" x-model="dids22">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids22" id="dids22-1" value="1" x-model="dids22">
+                                <input type="radio" name="dids22" id="dids22-2" value="2" x-model="dids22">
+                                <input type="radio" name="dids22" id="dids22-3" value="3" x-model="dids22">
+                                <input type="radio" name="dids22" id="dids22-4" value="4" x-model="dids22">
+                                <input type="radio" name="dids22" id="dids22-5" value="5" x-model="dids22">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids22-1">1</label><label for="dids22-2" style="color: #777;">raczej nie</label>
+                                <label for="dids22-3" style="color: #555;">3</label>
+                                <label for="dids22-4" style="color: #777;">raczej tak</label><label for="dids22-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids22-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids22-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids22-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 23 -->
                         <p class="question">Analizuję to, czy cele, które sobie stawiam w życiu rzeczywiście do mnie pasują</p>
                         <div class="answer">
-                            <input type="range" name="dids23" min="1" max="5" x-model="dids23">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids23" id="dids23-1" value="1" x-model="dids23">
+                                <input type="radio" name="dids23" id="dids23-2" value="2" x-model="dids23">
+                                <input type="radio" name="dids23" id="dids23-3" value="3" x-model="dids23">
+                                <input type="radio" name="dids23" id="dids23-4" value="4" x-model="dids23">
+                                <input type="radio" name="dids23" id="dids23-5" value="5" x-model="dids23">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids23-1">1</label><label for="dids23-2" style="color: #777;">raczej nie</label>
+                                <label for="dids23-3" style="color: #555;">3</label>
+                                <label for="dids23-4" style="color: #777;">raczej tak</label><label for="dids23-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids23-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids23-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids23-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 24 -->
                         <p class="question">Staram się dowiedzieć, co inni ludzie myślą na temat konkretnych kierunków, które chcę obrać w&nbsp;życiu</p>
                         <div class="answer">
-                            <input type="range" name="dids24" min="1" max="5" x-model="dids24">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids24" id="dids24-1" value="1" x-model="dids24">
+                                <input type="radio" name="dids24" id="dids24-2" value="2" x-model="dids24">
+                                <input type="radio" name="dids24" id="dids24-3" value="3" x-model="dids24">
+                                <input type="radio" name="dids24" id="dids24-4" value="4" x-model="dids24">
+                                <input type="radio" name="dids24" id="dids24-5" value="5" x-model="dids24">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids24-1">1</label><label for="dids24-2" style="color: #777;">raczej nie</label>
+                                <label for="dids24-3" style="color: #555;">3</label>
+                                <label for="dids24-4" style="color: #777;">raczej tak</label><label for="dids24-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids24-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids24-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids24-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
 
                         <hr>
-
+    <!-- dids 25 -->
                         <p class="question">Analizuję to, czy plany na przyszłość, które chcę zrealizować, zgadzają się z&nbsp;tym, czego naprawdę chcę</p>
                         <div class="answer">
-                            <input type="range" name="dids25" min="1" max="5" x-model="dids25">
+                            <div class="flexRow radioans">
+                                <input type="radio" name="dids25" id="dids25-1" value="1" x-model="dids25">
+                                <input type="radio" name="dids25" id="dids25-2" value="2" x-model="dids25">
+                                <input type="radio" name="dids25" id="dids25-3" value="3" x-model="dids25">
+                                <input type="radio" name="dids25" id="dids25-4" value="4" x-model="dids25">
+                                <input type="radio" name="dids25" id="dids25-5" value="5" x-model="dids25">
+                            </div>
                             <div class="flexRow datalist">    
-                                <label>1</label><label style="color: #555;">raczej nie</label>
-                                <label style="padding: 0 3px 0 3px;">3</label>
-                                <label style="color: #555;">raczej tak</label><label>4</label>
+                                <label for="dids25-1">1</label><label for="dids25-2" style="color: #777;">raczej nie</label>
+                                <label for="dids25-3" style="color: #555;">3</label>
+                                <label for="dids25-4" style="color: #777;">raczej tak</label><label for="dids25-5">5</label>
                             </div>
                             <div class="flexRow">
-                                <p class="anText aling-left">zdecydowanie się<br><span class="underDot">nie</span> zgadzam</p>
-                                <p class="anText align-center">trudno<br>powiedzieć</p>
-                                <p class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></p>
+                                <label for="dids25-1" class="anText align-left">zdecydowanie się<br> <span class="underDot">nie</span> zgadzam</label>
+                                <label for="dids25-3" class="anText align-center">trudno<br>powiedzieć</label>
+                                <label for="dids25-5" class="anText align-right">zdecydowanie się<br> <span class="underDot">zgadzam</span></label>
                             </div>
                         </div>
                     </fieldset>
+<!-- send it -->                    
                     <div class="butField" x-show="openDids & !openSummary" x-cloak>
                         <p class="beforeNext" x-show="didsEmpty" x-transition x-cloak>
                             Uzupełnij <span class="underDot">wszystkie</span> pola, żeby przejść do następnej części.
@@ -1765,7 +2058,8 @@
                     </div>
                 </form>
             </div>
-            <div id="summary" class="fieldIn fieldOut reqField" x-show="openSummary" x-transition x-cloak>
+<!-- SUMMARY -->            
+            <div id="summary" class="fieldIn fieldOut reqField" x-show="openSummary" x-collapse x-cloak>
                 <div id="logo32" class="logo position-center top10"></div>
                 <p id="thank">
                     Dziękuję Ci bardzo za udział w&nbsp;badaniu!
@@ -1782,12 +2076,10 @@
                 </div>
             </div>
             <div id="footer">Copyright &copy; 2022 Daniel Leszczak</div>
-        </div>   
-        <div id="progress" x-show="openResearch & !openSummary" x-transition x-cloak>
-            <p id="progressText" x-cloak>0%</p>
-            <div id="progressbg" x-cloak>
-                <div id="progressbar" x-cloak></div>
-            </div>    
+        </div>
+    <!-- progress -->           
+        <div id="progress" x-show="openResearch & !openSummary" :style="openResearch & !openPil ? { borderLeft: '7px solid #2d90be' } : openPil & !openSbs ? { borderLeft: '7px solid #2d90be', borderTop: '7px solid #2d90be' } : openSbs & !openDids ? { borderLeft: '7px solid #2d90be', borderTop: '7px solid #2d90be', borderRight: '7px solid #2d90be' } : openDids & !openSummary ? { border: '7px solid #2d90be' } : { border: '7px solid #ddd' }" x-transition x-cloak>
+            <span x-text="openResearch & !openPil ? '1/4' : openPil & !openSbs ? '2/4' : openSbs & !openDids ? '3/4' : openDids & !openSummary ? '4/4' : ''"></span>
         </div>
     </div>
 </div>
