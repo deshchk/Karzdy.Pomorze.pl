@@ -44,7 +44,7 @@
     dids16: $persist(''), dids17: $persist(''), dids18: $persist(''), dids19: $persist(''), dids20: $persist(''),
     dids21: $persist(''), dids22: $persist(''), dids23: $persist(''), dids24: $persist(''), dids25: $persist(''),
 
-    get startNew() { if (this.p != '') {this.p = ''; this.w = ''; this.c = ''; this.staZwY = ''; this.staZwM = ''; this. staZwT = ''; this.staZwD = ''; this.zaw = ''; this.staZaY = ''; this.staZaM = ''; this.staZaT = ''; this.staZaD = ''; this.sp = ''; this.ss = ''; this.sn = ''; this.wyk = ''; return true} else {return false} },
+    get startNew() { if (this.p != '') {this.p = ''; this.w = ''; this.c = ''; this.staZwY = ''; this.staZwM = ''; this. staZwT = ''; this.staZwD = ''; this.zaw = ''; this.staZaY = ''; this.staZaM = ''; this.staZaT = ''; this.staZaD = ''; this.sp = ''; this.ss = ''; this.sn = ''; this.wyk = ''; this.pil1 = ''; this.pil20 = ''; this.pil13 = ''; this.sbs1 = ''; this.sbs31 = ''; this.sbs14 = ''; this.dids1 = ''; this.dids25 = ''; this.dids18 = ''; return true} else {return false} },
         get wIsBad() { if (this.w > 30 || this.w < 18 & this.w != '' || this.w.startsWith(0)) {return true} else {return false} },   
     get aW() { if (!this.wIsBad & this.w != '') {return true} else {return false} },
     get aC() { if (this.aW & this.c != '') {return true} else {return false} },
