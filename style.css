@@ -310,6 +310,8 @@ input[type=text]:focus {
     color: #555;
 }
 
+.smaller { font-size: 15.5px; }
+
 .align-left { text-align: left; }
 
 .align-right { text-align: right; }
@@ -377,6 +379,7 @@ input[type=text]:focus {
     margin: 0;
     background-color: rgba(238, 238, 238, 0.5);
     border-radius: 8px;;
+    text-align: center;
 }
 
 
