@@ -1,10 +1,29 @@
 window.addEventListener("load", function() {
+
+// DOM Elements
     const form = document.getElementById('badanie');
     const submitButton = document.getElementById('submit');
-    submitButton.addEventListener("click", function() {
-        const data = new FormData(form);
+    const feedback = document.querySelector('#feedback');
+    const reseter = document.querySelector('.reset');
+    const summary = document.querySelector('#summary');
+
+// data variable    
+    const data = new FormData(form);
+
+    let sent = localStorage.getItem('sent') || false;
+
+// sent and reset
+reseter.addEventListener("click", function() {
+    summary.style.display = 'none';
+    localStorage.clear();
+    form.reset()
+});
+
+
 
 // Metryczka
+        const plec = Number(data.get('płeć'));
+        const wiek = Number(data.get('wiek'));
         const cywilny = Number(data.get('cywilny'));
         const zaw = Number(data.get('zawód'));
 
@@ -32,9 +51,6 @@ window.addEventListener("load", function() {
                 else if (zaw == 1)
                 { data.set('stanStud', '') & data.set('stypendium', '') }
                 else { data.set('stanPrac', '') };
-
-
-
 // PIL
 
     // deklarowanie pozycji
@@ -92,7 +108,8 @@ window.addEventListener("load", function() {
             pil1, pil2, pil3, pil4, pil5, pil6, pil7, pil8, pil9, pil10,
             pil11, pil12, pil13, pil14, pil15, pil16, pil17, pil18, pil19, pil20
         ];
-    data.append('pilSuma', pilAll.reduce( (total, curr) => total + curr ));
+        const pilSuma = pilAll.reduce( (total, curr) => total + curr );
+    data.append('pilSuma', pilSuma);
 
 
 
@@ -150,7 +167,9 @@ window.addEventListener("load", function() {
             sbs12, sbs13, sbs14, sbs15, sbs16, sbs17, sbs18, sbs19, sbs20, sbs21,
             sbs22, sbs23, sbs24, sbs25, sbs26, sbs27, sbs28, sbs29, sbs30, sbs31
         ];
-    data.append('sbsSuma', sbsAll.reduce( (total, curr) => total + curr ));
+        const sbsSuma = sbsAll.reduce( (total, curr) => total + curr );
+    data.append('sbsSuma', sbsSuma);
+
 
 
 // DIDS
@@ -204,13 +223,92 @@ window.addEventListener("load", function() {
 
 
 
-// sending data to Google Spreadsheet
+
+    
+function interpret() {
+
+// FEEDBACK section
+
+    feedback.innerHTML =
+    'Twoje wyniki wskazują na to, że: <p>' +
+
+    //ogólnie o sensie życia i samotności
+    'Aktualnie charakteryzuje Cię <strong>' +
+        (pilSuma >= 120 ? 'wysokie' : pilSuma < 75 ? 'niskie' : 'umiarkowane') + '</strong> poczucie <span class="underDot">sensu życia</span> oraz <strong>' +
+        (sbsSuma > 92 ? 'wysoki' : sbsSuma < 62 ? 'niski' : 'umiarkowany') + '</strong> poziom <span class="underDot">samotności</span>.' +
+    '</p> <p>' +
+
+    // samotność – wszystkie trzy
+            (ssp > 30 ? 'Wygląda na to, że nie satysfakcjonuje Cię Twoja aktualna sieć kontaktów, odczuwasz brak lub niedobór pozytywnych relacji i&nbsp;być może nawet odizolowanie od innych. '
+            : ssp < 20 ? 'Wygląda na to, że satysfakcjonuje Cię Twoja aktualna sieć kontaktów i&nbsp;posiadasz pozytywne relacje z innymi. '
+            : 'Wygląda na to, że Twoje uczucia są mieszane. Twoja aktualna sieć kontaktów nie do końca Cię satysfakcjonuje, ale ciężko też powiedzieć, że jest całkiem źle. ')
+        +
+            (sem > 31 ? 'Brakuje Ci ' + (ssp < 20 ? 'jednak relacji bliskich, bardziej emocjonalnych więzi' : 'relacji bliskich, więzi bardziej emocjonalnych') + ' i&nbsp;nosisz w&nbsp;sobie wrażenie, że być może nie jesteś wystarczająco wartościową osobą do takich relacji lub też inni tacy nie są. '
+            : sem < 22 ? 'Nie brakuje Ci ' + (ssp > 30 ? 'mimo wszystko ' : ssp >= 20 && ssp <= 30 ? 'mimo wszystko ' : '') + 'więzi emocjonalnych i&nbsp;raczej widzisz siebie jako osobę, która na bliskie relacje zasługuje i/lub myślisz tak o&nbsp;tych, z&nbsp;którymi ' + (ssp < 20 ? 'te bliskie ' : '') + 'więzi posiadasz. '
+            : 'Miewasz wątpliwości lub mieszane odczucia podczas oceniania siebie i/lub innych jako osoby wartościowe w&nbsp;kontekście bliższych, emocjonalnych więzi. ')
+        +
+            (seg >= 30 ? 'Doświadczasz samotności egzystencjalnej – uczucia braku sensu istnienia, braku wspólnoty i&nbsp;spójnych z&nbsp;innymi wartości.'
+            : seg < 20 ? 'Zdajesz się ' + (sem < 22 ? 'też ' : sem >= 22 && sem <= 30 ? 'jednak ' : '') + 'dostrzegać sens egzystencji, istnienia ludzkości oraz spójne z&nbsp;innymi wartości, czując się częścią czegoś większego niż Ty ' + (plec == 1 ? 'sama' : plec == 2 ? 'sam' : 'sam/a') + '.'
+            : 'Wątpliwie podchodzisz ' + (sem < 22 ? 'jednak ' : sem >= 22 && sem <= 30 ? 'też ' : '') + 'do ludzkiej egzystencji i&nbsp;nie do końca wiesz, czy czujesz się częścią jakiejś wspólnoty i&nbsp;czy masz z&nbsp;innymi spójne wartości.')
+        +
+    '</p> <hr> <p style="color: #666;">' +
+
+    'Rozwijając swoją tożsamość przechodzimy przez <span class="underDot">4&nbsp;etapy</span>. W&nbsp;danym momencie możemy znajdować się w&nbsp;więcej niż jednym z&nbsp;nich, a&nbsp;w&nbsp;przeciągu całego życia w&nbsp;każdym znaleźć się więcej niż raz. </p>' +
+    'Twoje wyniki świadczą o&nbsp;tym, że aktualnie: <ul>' +
+
+    // tożsamość – formowanie i ewaluacja
+    (dew > 17 || dpz > 17 || deg > 17 || diz > 17 || der > 16 ?
+        (dew > 17 ? '<li> <span class="underDot">Eksplorujesz</span>, poznajesz różne dziedziny, style życia i&nbsp;zbierasz tym samym informacje o&nbsp;swoich możliwościach i&nbsp;alternatywnych/potencjalnych ścieżkach do obrania.' + (dew < 21 && dew > 17 ? ' <span style="color: #222; font-weight: bold;">***</span>' : '') + ' </li>' : '') +
+        (dpz > 17 ? '<li> <span class="underDot">Dokonujesz wyboru</span>. Decydujesz się na określony kierunek działania i&nbsp;wcielanie w&nbsp;życie wyborów, które są z nim związane. Szczególnie w&nbsp;najważniejszych dla Ciebie sferach życia.' + (dpz < 21 && dpz > 17 ? ' <span style="color: #222; font-weight: bold;">***</span>' : '') + ' </li>' : '') +
+        (deg > 17 ? '<li> <span class="underDot">Analizujesz i&nbsp;oceniasz</span> dokonane przez siebie wybory. Starasz się dowiedzieć i&nbsp;określić na ile zgodne są one z&nbsp;Twoimi wyobrażeniami, oczekiwaniami i&nbsp;możliwościami.' + (deg < 21 && deg > 17 ? ' <span style="color: #222; font-weight: bold;">***</span>' : '') + ' </li>' : '') +
+        (diz > 17 ? '<li> <span class="underDot">Czujesz wewnętrzną zgodność</span> i bezpieczeństwo wynikające z przekonania o słuszności swoich wyborów.' + (diz < 21 && diz > 17 ? ' <span style="color: #222; font-weight: bold;">***</span>' : '') + '</li>' : '') +
+        // ruminacja i zmieszanie
+        (der > 16 ? '<li> <span class="underDot">Doświadczasz trudności</span> związanych z dokonaniem wyborów tożsamościowych. Prawdopodobnie jakieś obawy lub silna niepewność wstrzymują Cię przed pójściem dalej. </li>' : '') :
+        '<li> Co rzadkie... <span class="underDot">znajdujesz się gdzieś pomiędzy tymi etapami</span>, jednak jesteś na dobrej drodze. Prawdopodobnie towarzyszy Ci niepewność i/lub mieszane uczucia czy myśli, które powstrzymują Cię przed pójściem dalej. </li>') +
+    '</ul>' +
+    (dew > 17 & dew < 21 || dpz > 17& dpz < 21 || deg > 17& deg < 21 || diz > 17& diz < 21 ? '<div class="starred">Gwiazdkami zaznaczone zostały etapy na których się znajdujesz, jednak bez pełni zaangażowania. <br> Możliwe, że dany etap dopiero się rozpoczął lub właśnie się kończy.</div>' : '') +
+
+    // propozycja konsultacji
+    (pilSuma < 70 || sbsSuma > 62 || ssp > 30 || sem > 31 || seg > 30 || der > 16 ?
+    '<hr> <p>' +
+        'Jeśli ' + (plec == 1 ? 'byłabyś na to gotowa' : plec == 2 ? 'byłbyś na to gotowy' : 'był(a)byś na to gotowa/y') +
+        ', to warto porozmawiać ze specjalistą (np.&nbsp;psychologiem)&nbsp;o: </p> <ul>' +
+        (pilSuma < 70 ? '<li><span class="underDot">niskim</span> poczuciu sensu życia</li>' : '') +
+        (sbsSuma > 62 || ssp > 30 || sem > 31 || seg > 30 ? '<li><span class="underDot">podwyższonym</span> poczuciu samotności</li>' : '') +
+        (der > 16 ? '<li><span class="underDot">trudnościach</span> w rozwoju tożsamości</li>' : '') +
+        '</ul>' +
+    '<p>' +
+        'Jeśli nie ze specjalistą, to może chociaż z&nbsp;przyjacielem, opiekunem lub kimkolwiek innym, kto przychodzi Ci na myśl. ' +
+        'Wszystko co wyświetliło Ci się powyżej w&nbsp;interpretacji może służyć za pomoc w&nbsp;rozpoczęciu rozmowy. <br><br>' +
+    '</p> Dziękuję jeszcze raz za udział w&nbsp;badaniu i&nbsp;życzę Ci wszystkiego co najlepsze!&nbsp;:)' : '');
+};
+
+
+
+
+
+// sending data to Google Spreadsheet and the Summary
+    submitButton.addEventListener("click", function() {
         const action = 'https://script.google.com/macros/s/AKfycbwlyAffFlOfn7cResi31AszsGxLtADjRzzh7EBQKVOgQjS-arxjCEIPCQlug_qJgoMh/exec';
         fetch(action, {
         method: 'POST',
         body: data,
         })
 
-        localStorage.clear();
+        sent = true;
+        localStorage.setItem('sent', sent);
+        console.log('Dane zostały wysłane!');
+
+        interpret();
     });
-  });
+
+
+// IF sent OR not
+if (sent) {
+    interpret();
+    submitButton.remove();
+    console.log('Ktoś już wziął udział i wysłał swoje dane!');
+} else {
+    console.log('Żadne dane nie zostały jeszcze wysłane...');
+};
+});

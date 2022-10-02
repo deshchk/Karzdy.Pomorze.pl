@@ -1,7 +1,18 @@
-@media only screen and (min-width: 768px) {
-    #container {
-        margin: auto;
+@media only screen and (min-width: 768px) and (min-height: 838px) {
+    #container {margin: auto;}
+}
+
+@media screen and (min-width: 366px) {
+    #findMe {
+        float: right;
+        text-align: right;
+        right: 8px;
+        top: 8px;
     }
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    html { filter: invert(1) hue-rotate(180deg); }
 }
 
 html {
@@ -11,9 +22,9 @@ html {
 
 body {
     font-family: Helvetica, Arial, sans-serif;
-    background-color: rgba(0, 0, 0, .015);
-    height: 100%;
+    background-color: hsl(0, 0%, 95%);
     margin: 0;
+    height: 100%;
 }
 
 #flexContainer {
@@ -24,7 +35,6 @@ body {
 
 #container {
     max-width: 680px;
-    min-width: 400px;
     margin-bottom: auto;
 }
 
@@ -46,11 +56,9 @@ body {
     font-size: 20px;
     color: #999;
     letter-spacing: 2px;
-    float: right;
-    text-align: right;
     position: relative;
-    right: 8px;
-    bottom: 28px;
+    left: 2px;
+    padding-bottom: 10px;
 }
 
 #findMe a:nth-child(2) {
@@ -89,7 +97,15 @@ a:hover {
     background-color: #eee;
     border-radius: 10px;
 }
-#forNow { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: flex; justify-content: center; align-items: center; }
+#forNow {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    text-align: center;
+}
 
 #progress {
     font-size: 12px;
@@ -100,7 +116,7 @@ a:hover {
     bottom: 20px;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: hsl(0, 0%, 95%);
     border-radius: 50%;
     border: 7px solid #ddd;
 }
@@ -110,7 +126,6 @@ a:hover {
     letter-spacing: 0.3px;
     text-align: justify;
     padding: 0 22px 0 22px;
-    line-break: 50px;
 }
 
 #footer {
@@ -142,13 +157,13 @@ hr {
 }
 
 button, input[type=button] {
-    width: 150px;
     height: 100%;
     padding: 12px;
     color: #fff;
     background-color: #2d90be;
     border: 0px;
     border-radius: 6px;
+    font-size: .85rem;
 }
 
 button:hover, input[type=button]:hover {
@@ -159,7 +174,7 @@ button:hover, input[type=button]:hover {
 
 .reset {
     margin-left: 8px;
-    background-color: #aaa;
+    background-color: #777;
 }
 
 .reset:hover {
@@ -232,25 +247,9 @@ input[type=text]:focus {
     height: 18px;
 }
 
-/* .lineUnderRadios {
-    display: block;
-    position: relative;
-    bottom: 7px;
-    background-color: #dadada;
-    border-radius: 5px;
-    height: 8px;
-    width: 100%;
-    z-index: -1;
-} */
-
 .reqField {
     border: 1px solid #2d90be;
 }
-
-/* .reqs {
-    color: red;
-    padding-left: 8px;
-} */
 
 .question {
     padding: 12px 24px 0 24px;
@@ -289,19 +288,20 @@ input[type=text]:focus {
     position: relative;
     bottom: 3px;
     top: 7px;
+    margin-bottom: 8px;
 }
 
 .underDot {
-    background-image: linear-gradient(to right, rgba(255,255,255,0) 80%, #000 0%);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 80%, #888 0%);
     background-position: bottom;
-    background-size: 6px 1px;
+    background-size: 7px 1px;
     background-repeat: repeat-x;
 }
 
 .underDotHover:hover {
-    background-image: linear-gradient(to right, rgba(255,255,255,0) 80%, #000 0%);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 80%, #888 0%);
     background-position: bottom;
-    background-size: 6px 1px;
+    background-size: 7px 1px;
     background-repeat: repeat-x;
 }
 
@@ -346,6 +346,50 @@ input[type=text]:focus {
     padding: 22px;
 }
 
+#feedback p {
+    text-indent: 2em;
+    padding-top: 12px;
+    margin: 0;
+    color: #666;
+}
+
+#feedback p:nth-child(2) {
+    padding: 18px 12px 12px 12px;
+}
+
+#feedback p:nth-child(4) {
+    padding-bottom: 30px;
+}
+
+#feedback strong {
+    color: #444;
+}
+
+#feedback ul {
+    list-style-type: none;
+    padding: 12px 12px 0 12px;
+    margin: 0;
+    color: #666;
+}
+
+#feedback li {
+    padding-bottom: 12px;
+}
+
+#feedback li::before {
+    content: '– ';
+    color: #888;
+    line-height: 2em;
+}
+
+.starred {
+    font-size: .8em;
+    color: #888;
+    line-height: 1.7em;
+    text-align: right;
+    letter-spacing: 0;
+    padding: 20px 0 12px 0;
+}
 
 
 
@@ -368,7 +412,7 @@ input[type=text]:focus {
 
 
 .errorMsg {
-    color: red;
+    color: hsl(19, 62%, 54%);
     font-size: 13px;
     margin: 0 0 0 6px;
 }
