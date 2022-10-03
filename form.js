@@ -1,4 +1,3 @@
-function elements() {
 // DOM Elements
     const form = document.getElementById('badanie');
     const submitButton = document.getElementById('submit');
@@ -8,7 +7,6 @@ function elements() {
 
 // data variable    
     let data = new FormData(form);
-}; 
 
 
 
@@ -17,8 +15,6 @@ function elements() {
 
 // get and calculate data
 function getNcalc() {
-    
-    elements();
     
 // Metryczka
         let plec = Number(data.get('płeć'));
@@ -219,17 +215,12 @@ function getNcalc() {
     // DIDS – Eksploracja w głąb 21-25
         let deg = dids21 + dids22 + dids23 + dids24 + dids25;
     data.append('dids_wgłąb', deg);
-};
 
 
 
 
 
-function interpret() {
-
-// FEEDBACK section
-
-    getNcalc();
+// FEEDBACK section – interpretation
     
     feedback.innerHTML =
     'Twoje wyniki wskazują na to, że: <p>' +
@@ -292,8 +283,6 @@ function interpret() {
 // things happening on open & eventListeners
 window.addEventListener("load", function() {
 
-    elements ();
-
 // sent and reset
     let sent = localStorage.getItem('sent') || false;
     
@@ -318,8 +307,6 @@ reseter.addEventListener("click", function() {
         sent = true;
         localStorage.setItem('sent', sent);
         console.log('Dane zostały wysłane!');
-
-        interpret();
     });
 
 
