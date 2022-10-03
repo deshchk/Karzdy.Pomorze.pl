@@ -9,6 +9,11 @@ window.addEventListener("load", function() {
 
 
 
+// data variable    
+    let data = new FormData(form);
+
+
+
     let sent = localStorage.getItem('sent') || false;
 
 // sent and reset
@@ -19,11 +24,9 @@ reseter.addEventListener("click", function() {
 });
 
 
+
 // get and calculate data
 function getNcalc() {
-
-// data variable    
-    let data = new FormData(form);
     
 // Metryczka
         let plec = Number(data.get('płeć'));
@@ -293,9 +296,6 @@ function interpret() {
 
 // sending data to Google Spreadsheet and the Summary
     submitButton.addEventListener("click", function() {
-    
-        getNcalc();
-        
         const action = 'https://script.google.com/macros/s/AKfycbwlyAffFlOfn7cResi31AszsGxLtADjRzzh7EBQKVOgQjS-arxjCEIPCQlug_qJgoMh/exec';
         fetch(action, {
         method: 'POST',
