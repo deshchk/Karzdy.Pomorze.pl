@@ -8,6 +8,7 @@
 // data variable    
     let data = new FormData(form);
 
+    let sent;
 
 
 
@@ -220,6 +221,8 @@ function getNcalc() {
     data.append('dids_wgłąb', deg);
 
 
+
+    data = data;
 
 
 
