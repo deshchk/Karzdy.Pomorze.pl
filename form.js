@@ -299,7 +299,7 @@ function interpret() {
         fetch(action, {
         method: 'POST',
         body: data,
-        })
+        });
 
         sent = true;
         localStorage.setItem('sent', sent);
