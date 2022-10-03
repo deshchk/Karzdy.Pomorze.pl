@@ -296,6 +296,9 @@ function interpret() {
 
 // sending data to Google Spreadsheet and the Summary
     submitButton.addEventListener("click", function() {
+        
+        getNcalc();
+        
         const action = 'https://script.google.com/macros/s/AKfycbwlyAffFlOfn7cResi31AszsGxLtADjRzzh7EBQKVOgQjS-arxjCEIPCQlug_qJgoMh/exec';
         fetch(action, {
         method: 'POST',
