@@ -16,6 +16,9 @@
 // get and calculate data
 function getNcalc() {
     
+// get the data again    
+    let data = new FormData(form);
+
 // Metryczka
         let plec = Number(data.get('płeć'));
         let wiek = Number(data.get('wiek'));
