@@ -7,8 +7,7 @@ window.addEventListener("load", function() {
     const reseter = document.querySelector('.reset');
     const summary = document.querySelector('#summary');
 
-// data variable    
-    let data = new FormData(form);
+
 
     let sent = localStorage.getItem('sent') || false;
 
@@ -20,7 +19,11 @@ reseter.addEventListener("click", function() {
 });
 
 
-
+// get and calculate data
+function getNcalc() {
+// data variable    
+    let data = new FormData(form);
+    
 // Metryczka
         let plec = Number(data.get('płeć'));
         let wiek = Number(data.get('wiek'));
@@ -220,7 +223,7 @@ reseter.addEventListener("click", function() {
     // DIDS – Eksploracja w głąb 21-25
         let deg = dids21 + dids22 + dids23 + dids24 + dids25;
     data.append('dids_wgłąb', deg);
-
+};
 
 
 
@@ -289,6 +292,9 @@ function interpret() {
 
 // sending data to Google Spreadsheet and the Summary
     submitButton.addEventListener("click", function() {
+    
+        getNcalc();
+        
         const action = 'https://script.google.com/macros/s/AKfycbwlyAffFlOfn7cResi31AszsGxLtADjRzzh7EBQKVOgQjS-arxjCEIPCQlug_qJgoMh/exec';
         fetch(action, {
         method: 'POST',
