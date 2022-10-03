@@ -7,7 +7,8 @@
 
 // data variable    
     let data = new FormData(form);
-
+    let calcData;
+    
     let sent;
 
 
@@ -222,7 +223,7 @@ function getNcalc() {
 
 
 
-    data = data;
+    calcData = data;
 
 
 
@@ -307,7 +308,7 @@ reseter.addEventListener("click", function() {
         const action = 'https://script.google.com/macros/s/AKfycbwlyAffFlOfn7cResi31AszsGxLtADjRzzh7EBQKVOgQjS-arxjCEIPCQlug_qJgoMh/exec';
         fetch(action, {
         method: 'POST',
-        body: data,
+        body: calcData,
         });
 
         sent = true;
