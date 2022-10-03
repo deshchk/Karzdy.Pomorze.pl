@@ -1,5 +1,17 @@
+// DOM Elements
+    const form = document.getElementById('badanie');
+    const submitButton = document.getElementById('submit');
+    const feedback = document.querySelector('#feedback');
+    const reseter = document.querySelector('.reset');
+    const summary = document.querySelector('#summary');
+
 // data variable    
     let data = new FormData(form);
+
+
+
+
+
 
 // get and calculate data
 function getNcalc() {
@@ -273,16 +285,6 @@ function interpret() {
 
 // things happening on open & eventListeners
 window.addEventListener("load", function() {
-
-// DOM Elements
-    const form = document.getElementById('badanie');
-    const submitButton = document.getElementById('submit');
-    const feedback = document.querySelector('#feedback');
-    const reseter = document.querySelector('.reset');
-    const summary = document.querySelector('#summary');
-    
-
-
     let sent = localStorage.getItem('sent') || false;
 
 // sent and reset
