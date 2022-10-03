@@ -21,6 +21,7 @@ reseter.addEventListener("click", function() {
 
 // get and calculate data
 function getNcalc() {
+
 // data variable    
     let data = new FormData(form);
     
