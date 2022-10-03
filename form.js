@@ -285,15 +285,16 @@ function interpret() {
 
 // things happening on open & eventListeners
 window.addEventListener("load", function() {
-    let sent = localStorage.getItem('sent') || false;
+
 
 // sent and reset
+    let sent = localStorage.getItem('sent') || false;
+    
 reseter.addEventListener("click", function() {
     summary.style.display = 'none';
     localStorage.clear();
     form.reset()
 });
-
 
 
 // sending data to Google Spreadsheet and the Summary
