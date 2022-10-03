@@ -63,7 +63,7 @@
   get aSs() { if (this.aSza & this.ss != '') {return true} else {return false} },
   get aSu() { if (this.aSza & this.su != '') {return true} else {return false} },
   get aSn() { if (this.aSs & this.sn != '' || this.aSu & this.sn != '') {return true} else {return false} },
-  get aAllZaw() { if (this.aSza & this.zaw == 0 || this.aSp & this.zaw == 1 || this.aSn & this.zaw == 2) {return true} else {return false} },
+  get aAllZaw() { if (this.aSza & this.zaw == 0 || this.aSp & this.zaw == 1 || this.aSn & this.zaw == 2 || this.aSn & this.zaw == 3) {return true} else {return false} },
   get aWyk() { if (this.aAllZaw & this.wyk != '') {return true} else {return false} },
 
   get pilEmpty() { if (this.pil1 == '' || this.pil2 == '' || this.pil3 == '' || this.pil4 == '' || this.pil5 == '' || this.pil6 == '' || this.pil7 == '' || this.pil8 == '' || this.pil9 == '' || this.pil10 == '' || this.pil11 == '' || this.pil12 == '' || this.pil13 == '' || this.pil14 == '' || this.pil15 == '' || this.pil16 == '' || this.pil17 == '' || this.pil18 == '' || this.pil19 == '' || this.pil20 == '') {return true} else {return false} },
