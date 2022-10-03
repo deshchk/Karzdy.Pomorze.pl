@@ -1,3 +1,4 @@
+function elements() {
 // DOM Elements
     const form = document.getElementById('badanie');
     const submitButton = document.getElementById('submit');
@@ -7,6 +8,7 @@
 
 // data variable    
     let data = new FormData(form);
+}; 
 
 
 
@@ -15,6 +17,8 @@
 
 // get and calculate data
 function getNcalc() {
+    
+    elements();
     
 // Metryczka
         let plec = Number(data.get('płeć'));
@@ -225,6 +229,8 @@ function interpret() {
 
 // FEEDBACK section
 
+    getNcalc();
+    
     feedback.innerHTML =
     'Twoje wyniki wskazują na to, że: <p>' +
 
@@ -286,6 +292,7 @@ function interpret() {
 // things happening on open & eventListeners
 window.addEventListener("load", function() {
 
+    elements ();
 
 // sent and reset
     let sent = localStorage.getItem('sent') || false;
