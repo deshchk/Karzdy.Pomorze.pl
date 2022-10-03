@@ -315,7 +315,7 @@ reseter.addEventListener("click", function() {
 
 // IF sent OR not
 if (sent) {
-    interpret();
+    getNcalc();
     submitButton.remove();
     console.log('Ktoś już wziął udział i wysłał swoje dane!');
 } else {
