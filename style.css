@@ -12,7 +12,13 @@
 }
 
 @media screen and (prefers-color-scheme: dark) {
-    html { filter: invert(1) hue-rotate(180deg); }
+    #flexContainer, html { background-color: hsl(0, 0%, 5%); }
+    h1, h3, form > *:not(.butField):not(.reset), #progress, p:not(.fielDesc):not(.question):not(.comment):not(.forBreath):not(#thank), #footer, #meHead > *, #pil > * .answer > *, ul { 
+        filter: invert(1) hue-rotate(180deg);
+    }
+    h1 { display: inline-block; }
+    button, input[type=button] { color: #000 !important; }
+    #summary { color: #ccc; }
 }
 
 html {
@@ -89,23 +95,18 @@ a:hover {
     border: 0;
 }
 
+#introcont {
+    padding: 0 16px 16px 16px;
+}
+
 #intro {
-    margin: 15px;
-    width: calc(100%-30px);
-    padding-top: 56.25%;
     position: relative;
-    background-color: #eee;
-    border-radius: 10px;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
 }
-#forNow {
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12px;
-    text-align: center;
-}
+
+#intro iframe, #intro object, #intro embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 10px; }
 
 #progress {
     font-size: 12px;
@@ -126,10 +127,11 @@ a:hover {
     letter-spacing: 0.3px;
     text-align: justify;
     padding: 0 22px 0 22px;
+    margin-bottom: 32px;
 }
 
 #footer {
-    margin: 16px 0 100px 0;
+    margin: 16px 0 80px 0;
     height: fit-content;
     text-align: center;
     font-size: 12px;
@@ -178,7 +180,7 @@ button:hover, input[type=button]:hover {
 }
 
 .reset:hover {
-    background-color: #999;
+    background-color: #555;
 }
 
 legend {
@@ -254,6 +256,7 @@ input[type=text]:focus {
 .question {
     padding: 12px 24px 0 24px;
     letter-spacing: 1px;
+    color: #000;
 }
 
 .answer {
