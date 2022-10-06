@@ -93,12 +93,13 @@ a:hover {
 }
 
 #naprawion {
-    margin: 18px 18px 20px 18px;
+    margin: 18px 18px 24px 18px;
     text-align: center;
     background-color: #fff;
     color: #2d90be;
     border-radius: 6px;
-    padding: 12px;
+    padding: 10px;
+    font-size: .9em;
 }
 
 #uInfo {
