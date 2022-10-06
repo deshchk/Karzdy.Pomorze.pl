@@ -233,10 +233,10 @@ calcData = data;
 feedback.innerHTML =
 'Twoje wyniki wskazują na to, że: <p>' +
 
-//ogólnie o sensie życia i samotności
+//ogólnie o sensie życia i samotności 63-77-95
 'Aktualnie charakteryzuje Cię <strong>' +
     (pilSuma >= 120 ? 'wysokie' : pilSuma < 75 ? 'niskie' : 'umiarkowane') + '</strong> poczucie <span class="underDot">sensu życia</span> oraz <strong>' +
-    (sbsSuma > 92 ? 'wysoki' : sbsSuma < 62 ? 'niski' : (ssp > 30 & sem > 31 || ssp > 30 & seg > 30 || sem > 31 & seg > 30 ? 'podwyższony' : 'umiarkowany')) + '</strong> poziom <span class="underDot">samotności</span>.' +
+    (sbsSuma > 95 ? 'wysoki' : sbsSuma < 63 ? 'niski' : (sbsSuma > 77 ? 'podwyższony' : 'umiarkowany')) + '</strong> poziom <span class="underDot">samotności</span>.' +
 '</p> <p>' +
 
 // samotność – wszystkie trzy
@@ -244,13 +244,13 @@ feedback.innerHTML =
         : ssp < 20 ? 'Wygląda na to, że satysfakcjonuje Cię Twoja aktualna sieć kontaktów i&nbsp;posiadasz pozytywne relacje z innymi. '
         : 'Wygląda na to, że Twoje uczucia są mieszane. Twoja aktualna sieć kontaktów nie do końca Cię satysfakcjonuje, ale ciężko też powiedzieć, że jest całkiem źle. ')
     +
-        (sem > 31 ? 'Brakuje Ci ' + (ssp < 20 ? 'jednak relacji bliskich, bardziej emocjonalnych więzi' : 'relacji bliskich, więzi bardziej emocjonalnych') + ' i&nbsp;nosisz w&nbsp;sobie wrażenie, że być może nie jesteś wystarczająco wartościową osobą do takich relacji lub też inni tacy nie są. '
+        (sem > 32 ? 'Brakuje Ci ' + (ssp < 20 ? 'jednak relacji bliskich, bardziej emocjonalnych więzi' : 'relacji bliskich, więzi bardziej emocjonalnych') + ' i&nbsp;nosisz w&nbsp;sobie wrażenie, że być może nie jesteś wystarczająco wartościową osobą do takich relacji lub też inni tacy nie są. '
         : sem < 22 ? 'Nie brakuje Ci ' + (ssp > 30 ? 'mimo wszystko ' : ssp >= 20 && ssp <= 30 ? 'mimo wszystko ' : '') + 'więzi emocjonalnych i&nbsp;raczej widzisz siebie jako osobę, która na bliskie relacje zasługuje i/lub myślisz tak o&nbsp;tych, z&nbsp;którymi ' + (ssp < 20 ? 'te bliskie ' : '') + 'więzi posiadasz. '
         : 'Miewasz wątpliwości lub mieszane odczucia podczas oceniania siebie i/lub innych jako osoby wartościowe w&nbsp;kontekście bliższych, emocjonalnych więzi. ')
     +
         (seg >= 30 ? 'Doświadczasz samotności egzystencjalnej – uczucia braku sensu istnienia, braku wspólnoty i&nbsp;spójnych z&nbsp;innymi wartości.'
-        : seg < 20 ? 'Zdajesz się ' + (sem < 22 ? 'też ' : sem >= 22 && sem <= 30 ? 'jednak ' : '') + 'dostrzegać sens egzystencji, istnienia ludzkości oraz spójne z&nbsp;innymi wartości, czując się częścią czegoś większego niż Ty ' + (plec == 1 ? 'sama' : plec == 2 ? 'sam' : 'sam/a') + '.'
-        : 'Wątpliwie podchodzisz ' + (sem < 22 ? 'jednak ' : sem >= 22 && sem <= 30 ? 'też ' : '') + 'do ludzkiej egzystencji i&nbsp;nie do końca wiesz, czy czujesz się częścią jakiejś wspólnoty i&nbsp;czy masz z&nbsp;innymi spójne wartości.')
+        : seg < 20 ? 'Zdajesz się ' + (sem < 22 ? 'też ' : sem >= 22 && sem <= 31 ? 'jednak ' : '') + 'dostrzegać sens egzystencji, istnienia ludzkości oraz spójne z&nbsp;innymi wartości, czując się częścią czegoś większego niż Ty ' + (plec == 1 ? 'sama' : plec == 2 ? 'sam' : 'sam/a') + '.'
+        : 'Wątpliwie podchodzisz ' + (sem < 22 ? 'jednak ' : sem >= 22 && sem <= 31 ? 'też ' : '') + 'do ludzkiej egzystencji i&nbsp;nie do końca wiesz, czy czujesz się częścią jakiejś wspólnoty i&nbsp;czy masz z&nbsp;innymi spójne wartości.')
     +
 '</p> <hr> <p style="color: #666;">' +
 
@@ -270,12 +270,12 @@ feedback.innerHTML =
 (dew > 17 & dew < 21 || dpz > 17& dpz < 21 || deg > 17& deg < 21 || diz > 17& diz < 21 ? '<div class="starred">Gwiazdkami zaznaczone zostały etapy na których się znajdujesz, jednak bez pełni zaangażowania. <br> Możliwe, że dany etap dopiero się rozpoczął lub właśnie się kończy.</div>' : '') +
 
 // propozycja konsultacji
-(pilSuma < 70 || sbsSuma > 62 || ssp > 30 || sem > 31 || seg > 30 || der > 16 ?
+(pilSuma < 70 || sbsSuma > 77 || der > 16 ?
 '<hr> <p>' +
     'Jeśli ' + (plec == 1 ? 'byłabyś na to gotowa' : plec == 2 ? 'byłbyś na to gotowy' : 'był(a)byś na to gotowa/y') +
     ', to warto porozmawiać ze specjalistą (np.&nbsp;psychologiem)&nbsp;o: </p> <ul>' +
     (pilSuma < 70 ? '<li><span class="underDot">niskim</span> poczuciu sensu życia</li>' : '') +
-    (sbsSuma > 62 || ssp > 30 || sem > 31 || seg > 30 ? '<li><span class="underDot">podwyższonym</span> poczuciu samotności</li>' : '') +
+    '<li><span class="underDot">' + (sbsSuma > 95 ? 'wysokim' : 'podwyższonym') + '</span> poczuciu samotności</li>' +
     (der > 16 ? '<li><span class="underDot">trudnościach</span> w rozwoju tożsamości</li>' : '') +
     '</ul>' +
 '<p>' +
