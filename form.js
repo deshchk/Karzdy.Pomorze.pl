@@ -236,7 +236,7 @@ feedback.innerHTML =
 //ogólnie o sensie życia i samotności 63-77-95
 'Aktualnie charakteryzuje Cię <strong>' +
     (pilSuma >= 120 ? 'wysokie' : pilSuma < 75 ? 'niskie' : 'umiarkowane') + '</strong> poczucie <span class="underDot">sensu życia</span> oraz <strong>' +
-    (ssp > 30 & sem > 33 & seg > 30 ? 'wysoki' : ssp < 21 & sem < 22 & seg < 21 ? 'niski' : (ssp > 30 & sem > 33 || sem > 33 & seg > 30 || seg > 30 & ssp > 30 ? 'podwyższony' : 'umiarkowany')) + '</strong> poziom <span class="underDot">samotności</span>.' +
+    (ssp > 30 & sem > 33 & seg > 30 ? 'wysoki' : ssp < 21 & sem < 22 & seg < 21 ? 'niski' : (ssp > 27 & sem > 29 || sem > 29 & seg > 27 || seg > 27 & ssp > 27 ? 'podwyższony' : 'umiarkowany')) + '</strong> poziom <span class="underDot">samotności</span>.' +
 '</p> <p>' +
 
 // samotność – wszystkie trzy
@@ -267,15 +267,15 @@ feedback.innerHTML =
     (der > 16 ? '<li> <span class="underDot">Doświadczasz trudności</span> związanych z dokonaniem wyborów tożsamościowych. Prawdopodobnie jakieś obawy lub silna niepewność wstrzymują Cię przed pójściem dalej. </li>' : '') :
     '<li> Co rzadkie... <span class="underDot">znajdujesz się gdzieś pomiędzy tymi etapami</span>, jednak jesteś na dobrej drodze. Prawdopodobnie towarzyszy Ci niepewność i/lub mieszane uczucia czy myśli, które powstrzymują Cię przed pójściem dalej. </li>') +
 '</ul>' +
-(dew > 17 & dew < 21 || dpz > 17& dpz < 21 || deg > 17& deg < 21 || diz > 17& diz < 21 ? '<div class="starred">Gwiazdkami zaznaczone zostały etapy na których się znajdujesz, jednak bez pełni zaangażowania. <br> Możliwe, że dany etap dopiero się rozpoczął lub właśnie się kończy.</div>' : '') +
+(dew > 17 & dew < 21 || dpz > 17 & dpz < 21 || deg > 17 & deg < 21 || diz > 17 & diz < 21 ? '<div class="starred">Gwiazdkami zaznaczone zostały etapy na których się znajdujesz, jednak bez pełni zaangażowania. <br> Możliwe, że dany etap dopiero się rozpoczął lub właśnie się kończy.</div>' : '') +
 
 // propozycja konsultacji
-(pilSuma < 70 || ssp > 30 & sem > 33 || sem > 33 & seg > 30 || seg > 30 & ssp > 30 || der > 16 ?
+(pilSuma < 70 || ssp > 27 & sem > 29 || sem > 29 & seg > 27 || seg > 27 & ssp > 27 || der > 16 ?
 '<hr> <p>' +
     'Jeśli ' + (plec == 1 ? 'byłabyś na to gotowa' : plec == 2 ? 'byłbyś na to gotowy' : 'był(a)byś na to gotowa/y') +
     ', to warto porozmawiać ze specjalistą (np.&nbsp;psychologiem)&nbsp;o: </p> <ul>' +
     (pilSuma < 70 ? '<li><span class="underDot">niskim</span> poczuciu sensu życia</li>' : '') +
-    '<li><span class="underDot">' + (ssp > 30 & sem > 33 & seg > 30 ? 'wysokim' : 'podwyższonym') + '</span> poczuciu samotności</li>' +
+    '<li><span class="underDot">' + (ssp > 27 & sem > 29 & seg > 27 ? 'wysokim' : 'podwyższonym') + '</span> poczuciu samotności</li>' +
     (der > 16 ? '<li><span class="underDot">trudnościach</span> w rozwoju tożsamości</li>' : '') +
     '</ul>' +
 '<p>' +
