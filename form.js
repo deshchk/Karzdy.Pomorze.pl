@@ -23,6 +23,7 @@ let data = new FormData(form);
     let wiek = Number(data.get('wiek'));
     let cywilny = Number(data.get('cywilny'));
     let zaw = Number(data.get('zawód'));
+    let stanUcz = data.get('stanUcz');
 
     let szwd = Number(data.get('zwDni'));
     let szwt = Number(data.get('zwTyg'));
@@ -48,6 +49,10 @@ let data = new FormData(form);
             else if (zaw == 1)
             { data.set('stanStud', '') & data.set('stypendium', '') }
             else { data.set('stanPrac', '') };
+            
+        if (zaw == 3)
+            { data.set('stanStud', stanUcz) };
+            
 // PIL
 
 // deklarowanie pozycji

@@ -287,18 +287,18 @@
                         <fieldset class="fieldIn optField" x-show="aSza & zaw == 3" x-transition x-cloak>
                             <legend>Stanowisko uczniowskie</legend>
                             <div class="formBlock">
-                                <input type="radio" name="stanStud" value="1" id="przeSz" x-model="su" @input.once="scrlB">
+                                <input type="radio" name="stanUcz" value="1" id="przeSz" x-model="su" @input.once="scrlB">
                                 <label for="przeSz"><span x-text="p == 1 ? 'przewodnicząca' : p == 2 ? 'przewodniczący' : 'przewodniczącx'">przewodniczącx</span> szkoły</label>
                             </div>
                             <div class="formBlock">
-                                <input type="radio" name="stanStud" value="3" id="przeKl" x-model="su" @input.once="scrlB">
+                                <input type="radio" name="stanUcz" value="3" id="przeKl" x-model="su" @input.once="scrlB">
                                 <label for="przeKl"><span x-text="p == 1 ? 'przewodnicząca' : p == 2 ? 'przewodniczący' : 'przewodniczącx'">przewodniczącx</span> klasy</label>
                             </div>
                             <div class="formBlock">
-                                <input type="radio" name="stanStud" value="0" id="zwykU" x-model="su" @input.once="scrlB">
+                                <input type="radio" name="stanUcz" value="0" id="zwykU" x-model="su" @input.once="scrlB">
                                 <label for="zwykU"><span x-text="p == 1 ? 'zwykła uczennica' : p == 2 ? 'zwykły uczeń' : 'zwykły/a uczeń/uczennica'">zwykły/a uczeń/uczennica</span></label>
                             </div>    
-                                <input class="otherText" type="text" name="stanStud" id="suText" placeholder="inne" x-model="su" @input.once="scrlB">  
+                                <input class="otherText" type="text" name="stanUcz" id="suText" placeholder="inne" x-model="su" @input.once="scrlB">  
                         </fieldset>
 
 
