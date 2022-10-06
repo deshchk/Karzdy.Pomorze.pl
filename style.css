@@ -19,6 +19,7 @@
     h1 { display: inline-block; }
     button, input[type=button] { color: #000 !important; }
     #summary { color: #ccc; }
+    #fixed { background-color: hsl(0, 0%, 10%) !important; }
 }
 
 html {
@@ -89,6 +90,15 @@ a:hover {
     font-weight: 500;
     margin-bottom: 22px;
     line-height: 1.5em;
+}
+
+#fixed {
+    margin: 18px;
+    text-align: center;
+    background-color: #fff;
+    color: #2d90be;
+    border-radius: 6px;
+    padding: 12px;
 }
 
 #uInfo {
