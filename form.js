@@ -299,6 +299,7 @@ reseter.addEventListener("click", function() {
 summary.style.display = 'none';
 localStorage.clear();
 form.reset()
+document.location.reload(true);
 });
 
 
