@@ -236,7 +236,7 @@ feedback.innerHTML =
 //ogólnie o sensie życia i samotności
 'Aktualnie charakteryzuje Cię <strong>' +
     (pilSuma >= 120 ? 'wysokie' : pilSuma < 75 ? 'niskie' : 'umiarkowane') + '</strong> poczucie <span class="underDot">sensu życia</span> oraz <strong>' +
-    (sbsSuma > 92 ? 'wysoki' : sbsSuma < 62 ? 'niski' : 'umiarkowany') + '</strong> poziom <span class="underDot">samotności</span>.' +
+    (sbsSuma > 92 ? 'wysoki' : sbsSuma < 62 ? 'niski' : (ssp > 30 & sem > 31 || ssp > 30 & seg > 30 || sem > 31 & seg > 30 ? 'podwyższony' : 'umiarkowany')) + '</strong> poziom <span class="underDot">samotności</span>.' +
 '</p> <p>' +
 
 // samotność – wszystkie trzy
@@ -281,7 +281,7 @@ feedback.innerHTML =
 '<p>' +
     'Jeśli nie ze specjalistą, to może chociaż z&nbsp;przyjacielem, opiekunem lub kimkolwiek innym, kto przychodzi Ci na myśl. ' +
     'Wszystko co wyświetliło Ci się powyżej w&nbsp;interpretacji może służyć za pomoc w&nbsp;rozpoczęciu rozmowy. <br><br>' +
-'</p> Dziękuję jeszcze raz za udział w&nbsp;badaniu i&nbsp;życzę Ci wszystkiego co najlepsze!&nbsp;:)' : '');
+'</p> Dziękuję jeszcze raz za udział w&nbsp;badaniu i&nbsp;życzę Ci wszystkiego co najlepsze!&nbsp;:)' : '')
 };
 
 // - - - - - - - - - - // - - - - - - - - - - //
