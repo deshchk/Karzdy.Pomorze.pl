@@ -244,7 +244,7 @@ feedback.innerHTML =
         : ssp < 21 ? 'Wygląda na to, że satysfakcjonuje Cię Twoja aktualna sieć kontaktów i&nbsp;posiadasz pozytywne relacje z innymi. '
         : 'Wygląda na to, że Twoje uczucia są mieszane. Twoja aktualna sieć kontaktów nie do końca Cię satysfakcjonuje, ale ciężko też powiedzieć, że jest całkiem źle. ')
     +
-        (sem > 33 ? 'Brakuje Ci ' + (ssp < 21 ? 'jednak relacji bliskich, bardziej emocjonalnych więzi' : 'relacji bliskich, więzi bardziej emocjonalnych') + ' i&nbsp;nosisz w&nbsp;sobie wrażenie, że być może nie jesteś wystarczająco wartościową osobą do takich relacji lub też inni tacy nie są. '
+        (sem > 33 ? 'Brakuje Ci ' + (ssp < 21 ? 'mimo to relacji bliskich, bardziej emocjonalnych więzi' : 'relacji bliskich, więzi bardziej emocjonalnych') + ' i&nbsp;nosisz w&nbsp;sobie wrażenie, że być może nie jesteś wystarczająco wartościową osobą do takich relacji lub też inni tacy nie są. '
         : sem < 22 ? 'Nie brakuje Ci ' + (ssp >= 21 ? 'mimo wszystko ' : '') + 'więzi emocjonalnych i&nbsp;raczej widzisz siebie jako osobę, która na bliskie relacje zasługuje i/lub myślisz tak o&nbsp;tych, z&nbsp;którymi ' + (ssp < 21 ? 'te bliskie ' : '') + 'więzi posiadasz. '
         : 'Miewasz ' + (ssp < 21 ? 'mimo to ' : '') + 'wątpliwości lub mieszane odczucia podczas oceniania siebie i/lub innych jako osoby wartościowe w&nbsp;kontekście bliższych, emocjonalnych więzi. ')
     +
