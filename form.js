@@ -248,9 +248,9 @@ feedback.innerHTML =
         : sem < 22 ? 'Nie brakuje Ci ' + (ssp >= 21 ? 'mimo wszystko ' : '') + 'więzi emocjonalnych i&nbsp;raczej widzisz siebie jako osobę, która na bliskie relacje zasługuje i/lub myślisz tak o&nbsp;tych, z&nbsp;którymi ' + (ssp < 21 ? 'te bliskie ' : '') + 'więzi posiadasz. '
         : 'Miewasz ' + (ssp < 21 ? 'mimo to ' : '') + 'wątpliwości lub mieszane odczucia podczas oceniania siebie i/lub innych jako osoby wartościowe w&nbsp;kontekście bliższych, emocjonalnych więzi. ')
     +
-        (seg >= 30 ? 'Doświadczasz ' + (sem < 22 ? 'jednak ' : sem >= 22 && sem < 33 ? 'też ' : '') + 'samotności egzystencjalnej – uczucia braku sensu istnienia, braku wspólnoty i&nbsp;spójnych z&nbsp;innymi wartości.'
-        : seg < 21 ? 'Zdajesz się ' + (sem < 22 ? 'też ' : sem >= 22 && sem < 33 ? 'jednak ' : '') + 'dostrzegać sens egzystencji, istnienia ludzkości oraz spójne z&nbsp;innymi wartości, czując się częścią czegoś większego niż Ty ' + (plec == 1 ? 'sama' : plec == 2 ? 'sam' : 'sam/a') + '.'
-        : 'Wątpliwie podchodzisz ' + (sem < 22 ? 'jednak ' : sem >= 22 && sem < 33 ? 'też ' : '') + 'do ludzkiej egzystencji i&nbsp;nie do końca wiesz, czy czujesz się częścią jakiejś wspólnoty i&nbsp;czy masz z&nbsp;innymi spójne wartości.')
+        (seg >= 30 ? 'Doświadczasz ' + (sem < 22 ? 'jednak ' : sem >= 22 ? 'też ' : '') + 'samotności egzystencjalnej – uczucia braku sensu istnienia, braku wspólnoty i&nbsp;spójnych z&nbsp;innymi wartości.'
+        : seg < 21 ? 'Zdajesz się ' + (sem < 22 ? 'też ' : sem >= 22 ? 'jednak ' : '') + 'dostrzegać sens egzystencji, istnienia ludzkości oraz spójne z&nbsp;innymi wartości, czując się częścią czegoś większego niż Ty ' + (plec == 1 ? 'sama' : plec == 2 ? 'sam' : 'sam/a') + '.'
+        : 'Wątpliwie podchodzisz ' + (sem < 22 ? 'jednak ' : sem >= 22 ? 'też ' : '') + 'do ludzkiej egzystencji i&nbsp;nie do końca wiesz, czy czujesz się częścią jakiejś wspólnoty i&nbsp;czy masz z&nbsp;innymi spójne wartości.')
     +
 '</p> <hr> <p style="color: #666;">' +
 
