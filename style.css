@@ -264,6 +264,45 @@ input[type=text]:focus {
     border: 1px solid #2d90be;
 }
 
+.explain {
+    color: #777;
+    padding: 20px 24px 0 24px;
+}
+
+.explain strong {
+    color: #666;
+}
+
+.explain ol {
+    list-style: none;
+    counter-reset: item;
+}
+
+.explain li {
+    counter-increment: item;
+    padding-bottom: 8px;
+}
+
+.explain li:before {
+    content: counter(item) ". ";
+    color: #555;
+    padding-right: 3px;
+}
+
+.explain li:first-of-type:before,
+.explain li:last-of-type:before {
+    font-weight: bold;
+    color: #333;
+}
+
+.explain li:is(.middleOl):before, .middleOl {
+    color: #888;
+}
+
+.explain ul:last-child {
+    padding-bottom: 0;
+}
+
 .question {
     padding: 12px 24px 0 24px;
     letter-spacing: 1px;
@@ -323,8 +362,6 @@ input[type=text]:focus {
     margin: 12px 0 16px 0;
     color: #555;
 }
-
-.smaller { font-size: 15px; }
 
 .align-left { text-align: left; }
 
